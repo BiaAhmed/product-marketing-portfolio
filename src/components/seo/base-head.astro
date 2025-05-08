@@ -1,0 +1,232 @@
+---
+import 'src/styles/global.css';
+
+// all pages through the use of the <BaseHead /> component.
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title, description, image = '/images/ogimage.png' } = Astro.props;
+---
+
+<!-- Add this before other head content -->
+<script is:inline>
+	const theme = (() => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme') || 'light';
+		}
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return 'dark';
+		}
+		return 'light';
+	})();
+
+	if (theme === 'dark') {
+		document.documentElement.classList.add('dark');
+	} else {
+		document.documentElement.classList.remove('dark');
+	}
+</script>
+
+<!-- umami analytics -->{
+	import.meta.env.PROD && (
+		<script
+			async
+			defer
+			data-website-id={import.meta.env.UMAMI_WEBSITE_ID}
+			src={import.meta.env.UMAMI_TRACKING_URL}
+		/>
+	)
+}
+
+<!-- clarity analytics -->
+{
+	import.meta.env.PROD && (
+		<script
+			type='text/javascript'
+			set:html={`
+			(function(c,l,a,r,i,t,y){
+				c[a] = c[a] || function() { (c[a].q=c[a].q||[]).push(arguments) };
+				t=l.createElement(r); t.async=1; t.src="https://www.clarity.ms/tag/" + i;
+				y=l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t,y);
+			})(window, document, "clarity", "script", "${import.meta.env.CLARITY_TRACKING_ID}");
+		`}
+		/>
+	)
+}
+
+<link
+	rel='sitemap'
+	href='/sitemap-index.xml'
+/>
+
+<!-- Global Metadata -->
+<meta charset='utf-8' />
+<meta
+	name='viewport'
+	content='width=device-width,initial-scale=1'
+/>
+
+<!-- Favicons -->
+<link
+	rel='apple-touch-icon'
+	sizes='57x57'
+	href='/apple-icon-57x57.png'
+/>
+<link
+	rel='apple-touch-icon'
+	sizes='60x60'
+	href='/apple-icon-60x60.png'
+/>
+<link
+	rel='apple-touch-icon'
+	sizes='72x72'
+	href='/apple-icon-72x72.png'
+/>
+<link
+	rel='apple-touch-icon'
+	sizes='76x76'
+	href='/apple-icon-76x76.png'
+/>
+<link
+	rel='apple-touch-icon'
+	sizes='114x114'
+	href='/apple-icon-114x114.png'
+/>
+<link
+	rel='apple-touch-icon'
+	sizes='120x120'
+	href='/apple-icon-120x120.png'
+/>
+<link
+	rel='apple-touch-icon'
+	sizes='144x144'
+	href='/apple-icon-144x144.png'
+/>
+<link
+	rel='apple-touch-icon'
+	sizes='152x152'
+	href='/apple-icon-152x152.png'
+/>
+<link
+	rel='apple-touch-icon'
+	sizes='180x180'
+	href='/apple-icon-180x180.png'
+/>
+<link
+	rel='icon'
+	type='image/png'
+	sizes='192x192'
+	href='/android-icon-192x192.png'
+/>
+<link
+	rel='icon'
+	type='image/png'
+	sizes='32x32'
+	href='/favicon-32x32.png'
+/>
+<link
+	rel='icon'
+	type='image/png'
+	sizes='96x96'
+	href='/favicon-96x96.png'
+/>
+<link
+	rel='icon'
+	type='image/png'
+	sizes='16x16'
+	href='/favicon-16x16.png'
+/>
+<link
+	rel='manifest'
+	href='/manifest.json'
+/>
+<meta
+	name='msapplication-TileColor'
+	content='#ffffff'
+/>
+<meta
+	name='msapplication-TileImage'
+	content='/ms-icon-144x144.png'
+/>
+<meta
+	name='theme-color'
+	content='#ffffff'
+/>
+
+<meta
+	name='generator'
+	content={Astro.generator}
+/>
+
+<!-- Canonical URL -->
+<link
+	rel='canonical'
+	href={canonicalURL}
+/>
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta
+	name='title'
+	content={title}
+/>
+<meta
+	name='description'
+	content={description}
+/>
+
+<!-- Open Graph / Facebook -->
+<meta
+	property='og:type'
+	content='website'
+/>
+<meta
+	property='og:url'
+	content={Astro.url}
+/>
+<meta
+	property='og:title'
+	content={title}
+/>
+<meta
+	property='og:description'
+	content={description}
+/>
+<meta
+	property='og:image'
+	content={new URL(image, Astro.url)}
+/>
+
+<!-- Twitter -->
+<meta
+	property='twitter:card'
+	content='summary_large_image'
+/>
+<meta
+	property='twitter:url'
+	content={Astro.url}
+/>
+<meta
+	property='twitter:title'
+	content={title}
+/>
+<meta
+	property='twitter:description'
+	content={description}
+/>
+<meta
+	property='twitter:image'
+	content={new URL(image, Astro.url)}
+/>
+
+<link
+	rel='alternate'
+	type='application/rss+xml'
+	title={`${title} RSS Feed`}
+	href='/rss.xml'
+/>

@@ -1,0 +1,43 @@
+---
+import { ThoughtsItem } from "@components/cards";
+import { Header } from "@components/misc";
+import { BaseHead } from "@components/seo";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
+import { getCollection } from "astro:content";
+import RootLayout from "@layouts/root-layout.astro";
+
+const thoughts = (await getCollection("thought")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<BaseHead
+			title={SITE_TITLE}
+			description={SITE_DESCRIPTION}
+			image='/images/ogimage.png'
+		/>
+	</head>
+	<RootLayout>
+		<div
+			id='navbar+title'
+			class='flex flex-col w-full gap-6 max-w-xl'>
+			<Header />
+			<h1 class='w-full text-7xl font-medium tracking-tight mb-6'>thoughts</h1>
+
+			{
+				thoughts.map((thought, i) => (
+					<ThoughtsItem
+						category={thought.data.category}
+						content={thought.data.description}
+						pubDate={thought.data.pubDate}
+						slug={thought.slug}
+						index={i}
+					/>
+				))
+			}
+		</div>
+	</RootLayout>
+</html>
