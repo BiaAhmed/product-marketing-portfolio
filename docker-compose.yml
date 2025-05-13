@@ -1,0 +1,13 @@
+services:
+  rabia-portfolio:
+    image: rabia-portfolio:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rabia-portfolio
+    environment:
+      - PORT=4321
+      - HOST=0.0.0.0
+    ports:
+      - "4321:4321"
+    restart: unless-stopped
