@@ -1,0 +1,164 @@
+---
+// contact.astro
+import { BaseHead } from '@components/seo';
+import Layout       from '@layouts/layout.astro';
+import Frame        from '@components/misc/frame.astro';
+import Logos        from '@components/socialproofs/customerLogos';
+---
+
+<head>
+  <BaseHead
+    title="Contact – Rabia Ahmed"
+    description="Have a project or an idea? Let's talk product marketing & growth."
+    image="/images/ogimage.png" />
+</head>
+
+<Layout>
+  <section class="relative min-h-screen pt-32 sm:pt-40 pb-24 overflow-hidden">
+    <!-- radial flare -->
+    <div aria-hidden
+         class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[1000px] h-[800px]
+                opacity-0 dark:opacity-35
+                [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)]" />
+
+    <!-- content wrapper -->
+    <div class="relative z-10 max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- heading -->
+      <h1 class="text-center font-regular leading-[0.9] tracking-tight text-[min(12vw,72px)] text-gray-900 dark:text-white mb-12">
+        Meet Rabia
+        <span class="block text-gray-500 dark:text-gray-400 text-2xl sm:text-3xl">
+          product&nbsp;marketer
+        </span>
+      </h1>
+
+      <!-- intro -->
+      <div class="text-center space-y-6 mb-16">
+        <span class="inline-block bg-theme-sun-primary dark:text-theme-sun-text text-black text-xs font-bold tracking-widest px-3 py-1 rounded">
+          LET'S&nbsp;TALK
+        </span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
+          Got a project? Or just curious?
+        </h2>
+        <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+          Whether you're here to jam ideas, explore collaborations, or just say hi — drop a line below.
+        </p>
+      </div>
+
+      <!-- contact form -->
+      <form id="contactForm" class="mx-auto w-full max-w-2xl space-y-6" autocomplete="off">
+        <!-- name -->
+        <div>
+          <label for="name" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Full&nbsp;Name</label>
+          <input id="name" name="name" type="text" required autocomplete="name" placeholder="John Doe"
+                 class="w-full px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700
+                        placeholder-gray-500 dark:placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none
+                        focus:ring-2 focus:ring-theme-sun-primary" />
+        </div>
+
+        <!-- email -->
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Work&nbsp;Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="john@company.com"
+                 class="w-full px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700
+                        placeholder-gray-500 dark:placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none
+                        focus:ring-2 focus:ring-theme-sun-primary" />
+        </div>
+
+        <!-- category -->
+        <div>
+          <label for="category" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Category</label>
+          <select id="category" name="category" required
+                  class="w-full px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700
+                         text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-theme-sun-primary">
+            <option value="" disabled hidden>Select a topic</option>
+            <option>Project enquiry</option>
+            <option>Consultation call</option>
+            <option>Collaboration</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <!-- message -->
+        <div>
+          <label for="message" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Anything&nbsp;else?</label>
+          <textarea id="message" name="message" rows="6" required autocomplete="off"
+                    placeholder="Tell me what's on your mind…"
+                    class="w-full px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700
+                           placeholder-gray-500 dark:placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none
+                           focus:ring-2 focus:ring-theme-sun-primary"></textarea>
+        </div>
+
+        <!-- CTA -->
+        <div class="pt-4 flex justify-center">
+            <button type="submit" id="submitBtn" class="btn-primary">
+              Let's&nbsp;connect
+            </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- logos -->
+    <div class="relative z-10 mt-20">
+      <Logos client:load />
+    </div>
+
+    <!-- toast -->
+    <div id="toast"
+         class="fixed left-1/2 -translate-x-1/2 bottom-6 px-4 py-3 rounded-md bg-theme-sun-primary text-black font-medium shadow-lg
+                opacity-0 pointer-events-none transition-opacity duration-300" />
+  </section>
+
+  <!-- client‑side script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const endpoint = 'https://fastapi.metiscore.ai/forms/';
+      const form = document.getElementById('contactForm');
+      const btn = document.getElementById('submitBtn');
+      const toast = document.getElementById('toast');
+
+      if (!form || !btn || !toast) return;
+
+      const showToast = (msg, success = true) => {
+        toast.textContent = msg;
+        toast.style.backgroundColor = success ? '#55d799' : '#ef4444';
+        toast.classList.replace('opacity-0', 'opacity-100');
+        setTimeout(() => toast.classList.replace('opacity-100', 'opacity-0'), 4000);
+      };
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+        const data = {
+          formName: 'rabia-portfolio-contact',
+          formData: {
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            category: form.category.value,
+            message: form.message.value.trim()
+          }
+        };
+
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+            mode: 'cors'
+          });
+
+          if (!res.ok) throw new Error(await res.text());
+          showToast('Thanks! I’ll get back to you shortly. 👋');
+          form.reset();
+        } catch (err) {
+          console.error(err);
+          showToast('Something went wrong. Please try again.', false);
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      });
+    });
+  </script>
+</Layout>

@@ -1,0 +1,120 @@
+/* ============================= */
+/* Contact Page Styles           */
+/* ============================= */
+
+/* General Page Styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0d0d0d; /* Dark background */
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Section Styling */
+  .section-sm {
+    padding: 4rem 0;
+  }
+  
+  /* Centering the Form */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Title Styling */
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+  
+  /* ============================= */
+  /* Form Styling */
+  /* ============================= */
+  
+  form {
+    background: #181818; /* Slightly lighter than the background */
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Form Fields */
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 8px;
+    background: #252525;
+    border: 1px solid #333;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: #8a2be2; /* Purple focus effect */
+    box-shadow: 0px 0px 10px rgba(138, 43, 226, 0.5);
+  }
+  
+  /* Form Labels */
+  label {
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
+    text-align: left;
+  }
+  
+  /* Placeholder Styling */
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Submit Button */
+  button {
+    width: 100%;
+    padding: 12px;
+    background: #0000;
+    border: #ffffff solid 1px; 
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 15px;
+  }
+  
+  button:hover {
+    background: #04564a;
+    border: #0000 solid 1px; 
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    form {
+      padding: 1.5rem;
+    }
+  
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  

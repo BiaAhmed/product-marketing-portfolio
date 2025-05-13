@@ -1,0 +1,24 @@
+---
+import { BaseHead } from '@components/seo';
+import { Header } from '@components/misc';
+import Footer  from '@components/misc/footer2.astro';
+import { SITE_TITLE } from '@data/index';
+import { SITE_DESCRIPTION, socialLinks } from '@data/index';
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="rabia" class="scroll-smooth ">
+    <head>
+		<BaseHead
+			title={SITE_TITLE}
+			description={SITE_DESCRIPTION}
+			image='/images/ogimage.png'
+		/>
+	</head>
+
+    <body class="overflow-x-hidden dark:bg-gray-950 ">
+        <Header />
+        <slot />
+        <Footer />
+    </body>
+</html>

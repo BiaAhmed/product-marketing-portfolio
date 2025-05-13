@@ -1,43 +1,69 @@
 ---
-import { ThoughtsItem } from "@components/cards";
-import { Header } from "@components/misc";
-import { BaseHead } from "@components/seo";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
-import { getCollection } from "astro:content";
-import RootLayout from "@layouts/root-layout.astro";
+import { ThoughtsItem } from '@components/cards';
+import { BaseHead } from '@components/seo';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/layout.astro';
 
-const thoughts = (await getCollection("thought")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+const PAGE_SIZE = 6;
+
+const allThoughts = (await getCollection('thought')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
+const start = (currentPage - 1) * PAGE_SIZE;
+const end = start + PAGE_SIZE;
+const thoughts = allThoughts.slice(start, end);
+const totalPages = Math.ceil(allThoughts.length / PAGE_SIZE);
 ---
 
 <!doctype html>
-<html lang='en'>
-	<head>
-		<BaseHead
-			title={SITE_TITLE}
-			description={SITE_DESCRIPTION}
-			image='/images/ogimage.png'
-		/>
-	</head>
-	<RootLayout>
-		<div
-			id='navbar+title'
-			class='flex flex-col w-full gap-6 max-w-xl'>
-			<Header />
-			<h1 class='w-full text-7xl font-medium tracking-tight mb-6'>thoughts</h1>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Thoughts — ${SITE_TITLE}`}
+      description={SITE_DESCRIPTION}
+      image="/images/ogimage.png"
+    />
+  </head>
+  <Layout>
+    <section class="px-6 pt-24 pb-16 max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-theme-sun-text dark:text-theme-moon-text mb-12">
+        thoughts
+      </h1>
 
-			{
-				thoughts.map((thought, i) => (
-					<ThoughtsItem
-						category={thought.data.category}
-						content={thought.data.description}
-						pubDate={thought.data.pubDate}
-						slug={thought.slug}
-						index={i}
-					/>
-				))
-			}
-		</div>
-	</RootLayout>
+      <div class="space-y-12">
+        {
+          thoughts.map((thought, i) => (
+            <ThoughtsItem
+              category={thought.data.category}
+              content={thought.data.description}
+              pubDate={thought.data.pubDate}
+              slug={thought.slug}
+              index={i}
+            />
+          ))
+        }
+      </div>
+
+      <!-- Pagination -->
+      <nav class="mt-16 flex justify-center gap-4">
+        {
+          currentPage > 1 && (
+            <a href={`?page=${currentPage - 1}`} class="px-4 py-2 rounded bg-theme-sun-primary text-black dark:text-theme-moon-text font-medium">
+              ← Previous
+            </a>
+          )
+        }
+        {
+          currentPage < totalPages && (
+            <a href={`?page=${currentPage + 1}`} class="px-4 py-2 rounded bg-theme-sun-primary text-black dark:text-theme-moon-text font-medium">
+              Next →
+            </a>
+          )
+        }
+      </nav>
+    </section>
+  </Layout>
 </html>

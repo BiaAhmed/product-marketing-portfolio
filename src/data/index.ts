@@ -1,5 +1,5 @@
-export const SITE_TITLE = "Sanju's Space";
-export const SITE_DESCRIPTION = "A internet space for Sanju.";
+export const SITE_TITLE = "Rabia Ahmed - Product Marketing, SEO, and Growth";
+export const SITE_DESCRIPTION = "Blend AI/ML and marketing with a practical, sustainable, scalable approach";
 
 export interface MenuItem {
 	label: string;
@@ -8,7 +8,7 @@ export interface MenuItem {
 
 export const menuItems: MenuItem[] = [
 	{
-		label: "sanju",
+		label: "rabia",
 		url: "/",
 	},
 	{
@@ -25,14 +25,14 @@ export const menuItems: MenuItem[] = [
 	},
 ];
 
-export const title = "Sanju's Space";
-export const description = "A internet space for Sanju.";
+export const title = "Rabia's Space";
+export const description = "A internet space for Rabia.";
 export const image = "/images/ogimage.png";
-export const url = "https://sanju.sh";
+export const url = "https://rabiaahmed.me";
 
 export const ogImage = {
 	src: "/images/ogimage.png",
-	alt: "Sanju's Space",
+	alt: "Rabia's Space",
 };
 
 
@@ -67,18 +67,18 @@ export const products = [
 export const socialLinks = [
 	{
 		label: "@x",
-		url: "https://x.com/spikeysanju",
+		url: "https://x.com/biaahmedly",
 	},
 	{
 		label: "email",
-		url: "mailto:work@sanju.sh",
+		url: "mailto:work@rabiaahmed.me",
 	},
 	{
 		label: "github",
-		url: "https://github.com/spikeysanju",
+		url: "https://github.com/BiaAhmed",
 	},
 	{
 		label: "linkedin",
-		url: "https://www.linkedin.com/in/imsanju",
+		url: "https://www.linkedin.com/in/rabia-ahmed-khan/",
 	},
 ];

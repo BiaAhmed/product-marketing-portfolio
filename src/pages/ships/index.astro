@@ -4,44 +4,53 @@ import Headers from "@components/misc/headers.astro";
 import { BaseHead } from "@components/seo";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
 import { groupShipsByYearMonthSorted, type Ship } from "@utils/index";
-import RootLayout from "@layouts/root-layout.astro";
+import Layout from "@layouts/layout.astro";
 
 const groupedShips = await groupShipsByYearMonthSorted();
+const monthKeys = Object.keys(groupedShips);
+const PAGE_SIZE = 1;
+
+const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
+const totalPages = Math.ceil(monthKeys.length / PAGE_SIZE);
+
+const start = (currentPage - 1) * PAGE_SIZE;
+const end = start + PAGE_SIZE;
+const currentGroups = monthKeys.slice(start, end);
 ---
 
 <!doctype html>
 <html lang='en'>
 	<head>
 		<BaseHead
-			title={SITE_TITLE}
+			title={`Ships — ${SITE_TITLE}`}
 			description={SITE_DESCRIPTION}
 			image='/images/ogimage.png'
 		/>
 	</head>
-	<RootLayout>
-		<div
-			id='navbar+title'
-			class='flex flex-col w-full gap-6 max-w-xl'>
-			<Headers />
-			<h1 class='w-full text-7xl font-medium tracking-tight mb-6'>ships</h1>
-			<div
-				id='grouped-ships'
-				class='grid grid-cols-10 gap-3'>
+	<Layout>
+		<section class="px-6 pt-24 pb-16 max-w-4xl mx-auto">
+			<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-theme-sun-text dark:text-theme-moon-text mb-12">ships</h1>
+
+			<div class="flex flex-col gap-12">
 				{
-					Object.entries(groupedShips).map(([yearMonth, ships]) => {
+					currentGroups.map((yearMonth) => {
+						const ships = groupedShips[yearMonth];
 						const [year, month] = yearMonth.split('-');
 						const date = new Date(Number(year), Number(month) - 1);
 						const monthName = date.toLocaleString('default', { month: 'long' });
 						const shipCount = ships.length;
 						return (
-							<div class='col-span-10 mb-6'>
-								<div class='flex flex-row items-center justify-between font-medium'>
-									<h2 class='text-lg tracking-tight mb-6'>
+							<div class="w-full">
+								<div class="flex items-center justify-between mb-6">
+									<h2 class="text-lg tracking-tight font-semibold text-theme-sun-text dark:text-theme-moon-text">
 										{monthName} {year}
 									</h2>
-									<span class='text-gray-500'>{shipCount} ships</span>
+									<span class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">
+										{shipCount} ships
+									</span>
 								</div>
-								<div class='grid grid-cols-10 gap-3'>
+
+								<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 									{ships.map((ship: Ship) => (
 										<ShipsItem
 											title={ship.data.title}
@@ -60,6 +69,20 @@ const groupedShips = await groupShipsByYearMonthSorted();
 					})
 				}
 			</div>
-		</div>
-	</RootLayout>
+
+			<!-- Pagination -->
+			<nav class="mt-16 flex justify-center gap-4">
+				{currentPage > 1 && (
+					<a href={`?page=${currentPage - 1}`} class="px-4 py-2 rounded bg-theme-sun-primary text-black dark:text-theme-moon-text font-medium">
+						← Previous
+					</a>
+				)}
+				{currentPage < totalPages && (
+					<a href={`?page=${currentPage + 1}`} class="px-4 py-2 rounded bg-theme-sun-primary text-black dark:text-theme-moon-text font-medium">
+						Next →
+					</a>
+				)}
+			</nav>
+		</section>
+	</Layout>
 </html>

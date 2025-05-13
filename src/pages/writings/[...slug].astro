@@ -6,8 +6,13 @@ import { getReadingTime } from '@utils/index';
 const posts = await getCollection('writing');
 type Props = CollectionEntry<'writing'>;
 
-const { slug } = Astro.params;
+const rawSlug = Astro.params.slug;              // string | string[]
+const slug    = Array.isArray(rawSlug)
+  ? rawSlug.join('/')    // "nested/path"
+  : rawSlug;             // already a single string
+
 const post = posts.find((page) => page.slug === slug);
+
 
 if (!post) return Astro.redirect('/404');
 
@@ -17,6 +22,6 @@ const readingTime = getReadingTime(post.body);
 ---
 
 <WritingLayout {...post.data} readingTime={readingTime}>
-	<Content />
+		<Content />
 	<ScrollProgress />
 </WritingLayout>

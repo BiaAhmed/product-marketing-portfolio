@@ -1,6 +1,6 @@
-![ A website with the title "Sanju's internet space" and navigation links for "home", "writing", "thoughts", and "ships".](https://github.com/Spikeysanju/sanju.sh/assets/23400022/ff3120ee-281b-4607-995e-bc2e8f9edef6)
+![ A website with the title "Rabia's internet space" and navigation links for "home", "writing", "thoughts", and "ships".](https://github.com/Spikeyrabia/rabiaahmed.me/assets/23400022/ff3120ee-281b-4607-995e-bc2e8f9edef6)
 
-# 🌐 sanju's – internet space
+# 🌐 rabia's – internet space
 hey! this is my personal corner on the web where I share my thoughts, ideas, and projects. feel free to explore and contact me if you have any questions or just want to chat. 
 
 ## 📖 about project
@@ -38,13 +38,13 @@ UMAMI_TRACKING_URL=your_umami_tracking_url
 CLARITY_TRACKING_ID=your_clarity_tracking_id
 ```
 
-if you don't want to use analytics, you can remove the analytics code from the [src/components/seo/base-head.astro](https://github.com/Spikeysanju/sanju.sh/blob/main/src/components/seo/base-head.astro) file and remove the umami and clarity scripts.
+if you don't want to use analytics, you can remove the analytics code from the [src/components/seo/base-head.astro](https://github.com/Spikeyrabia/rabiaahmed.me/blob/main/src/components/seo/base-head.astro) file and remove the umami and clarity scripts.
 
 ## 🤝 contributing
 if you have ideas or suggestions, feel free to open an issue or submit a pull request. i'm open to collaborations and contributions.
 
 ## 📬 contact
-you can reach me at work@sanju.sh or on twitter. don't hesitate to get in touch!
+you can reach me at work@rabiaahmed.me or on twitter. don't hesitate to get in touch!
 
 ## 📜 license
 this project is open source under the Apache License 2.0. you're welcome to use the code for your own projects. if you do, a shoutout would be appreciated but it's not required.

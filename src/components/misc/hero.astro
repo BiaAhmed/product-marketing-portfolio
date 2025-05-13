@@ -1,0 +1,59 @@
+---
+import Container from "@components/misc/container.astro";
+import Logos from "@components/socialproofs/customerLogos";
+---
+
+<section id="home" class="relative overflow-hidden scroll-mt-24">
+  <!-- radial background flare -->
+  <div
+    aria-hidden
+    class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[800px] z-10 opacity-0 dark:opacity-25"
+    style="background-image:radial-gradient(theme(colors.gray.500),transparent_50%)"
+  />
+
+  <Container>
+    <div class="relative pt-32 sm:pt-44 flex flex-col items-center text-center">
+      <!-- headline block -->
+      <h1 class="leading-tight">
+        <!-- first line: name + avatar -->
+        <span
+          class="inline-flex items-center pb-4 gap-2 text-gray-900 dark:text-white text-4xl sm:text-5xl md:text-4xl lg:text-6xl"
+        >
+          Hi, I'm&nbsp;Rabia 
+          <span class="group inline-block ">
+            <img
+              src="/images/people/rabia.png"
+              alt="Rabia Ahmed portrait"
+              class="size-12 ml-2 rounded-xl md:size-16 hover:scale-150 duration-300 hover:rotate-6 rotate-2  ease-in-ou"
+            />
+          </span>,
+        </span>
+        <!-- second line: role -->
+        <br />
+        <span
+          class="font-serif italic text-theme-sun-textMuted dark:text-theme-moon-textMuted text-3xl sm:text-4xl md:text-5xl lg:text-4xl"
+        >
+        I turn intricate products into growth engines users swear by.
+        </span>
+      </h1>
+
+      <!-- subtitle -->
+      <p
+        class="mt-8 max-w-xl mx-auto text-lg text-theme-sun-textMuted dark:text-theme-moon-textMuted"
+      >
+      From first beta signup to predictable revenue, I uncover what matters, craft the story, and put your product in front of the people who need it most.
+      </p>
+
+      <!-- CTA buttons -->
+      <div class="mt-8 flex flex-wrap justify-center gap-y-4 gap-x-6">
+        <a href="/contact" class="btn-primary">Schedule&nbsp;eCoffee ☕</a>
+        <a href="#services" class="btn">See&nbsp;Capabilities&nbsp;💪🏽</a>
+      </div>
+
+      <!-- customer / tech logos -->
+      <div class="mt-12 w-full">
+        <Logos />
+      </div>
+    </div>
+  </Container>
+</section>

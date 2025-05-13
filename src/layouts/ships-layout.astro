@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { Header } from '@components/misc';
+// import { Header } from '@components/misc';
 import FormattedDate from '@components/misc/formatted-date.astro';
 import { BaseHead } from '@components/seo';
-import RootLayout from '@layouts/root-layout.astro';
+import Layout from '@layouts/layout.astro';
 import { clsx } from '@utils/index';
 
 type Props = CollectionEntry<'writing'>['data'];
@@ -20,11 +20,10 @@ const { title, description, pubDate, readingTime } = Astro.props;
 		/>
 	</head>
 
-	<RootLayout>
+	<Layout>
 		<div
 			id='navbar+title'
 			class='flex flex-col w-full gap-6 max-w-xl'>
-			<Header />
 
 			<article
 				id='blog-content'
@@ -61,5 +60,5 @@ const { title, description, pubDate, readingTime } = Astro.props;
 				</div>
 			</article>
 		</div>
-	</RootLayout>
+	</Layout>
 </html>

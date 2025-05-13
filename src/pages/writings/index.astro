@@ -1,41 +1,74 @@
 ---
-import { WritingItem } from '@components/cards';
-import { Header } from '@components/misc';
-import { BaseHead } from '@components/seo';
-import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
 import { getCollection } from 'astro:content';
-import RootLayout from '@layouts/root-layout.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
+import { BaseHead } from '@components/seo';
+import Layout from '@layouts/layout.astro';
+import FormattedDate from '@components/misc/formatted-date.astro';
 
-const writings = (await getCollection('writing')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const PAGE_SIZE = 5;
+const allWritings = (await getCollection('writing')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
+const start = (currentPage - 1) * PAGE_SIZE;
+const end = start + PAGE_SIZE;
+const writings = allWritings.slice(start, end);
+const totalPages = Math.ceil(allWritings.length / PAGE_SIZE);
 ---
 
 <!doctype html>
-<html lang='en'>
-	<head>
-		<BaseHead
-			title={SITE_TITLE}
-			description={SITE_DESCRIPTION}
-			image='/images/ogimage.png'
-		/>
-	</head>
-	<RootLayout>
-		<div
-			id='Header+title'
-			class='flex flex-col w-full gap-6 max-w-xl'>
-			<Header />
-			<h1 class='w-full text-7xl font-medium tracking-tight'>writings</h1>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={SITE_TITLE}
+      description={SITE_DESCRIPTION}
+      image="/images/ogimage.png"
+    />
+  </head>
+  <Layout>
+    <section class="px-6 py-32 max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-theme-sun-text dark:text-theme-moon-text mb-10">
+        Latest blog posts
+      </h1>
 
-			{
-				writings.map((writing) => (
-					<WritingItem
-						title={writing.data.title}
-						date={writing.data.pubDate}
-						slug={writing.slug}
-					/>
-				))
-			}
-		</div>
-	</RootLayout>
+      <div class="space-y-10">
+        {
+          writings.map((post) => (
+            <article class="p-6 rounded-xl bg-theme-sun-bgAccent dark:bg-theme-moon-bgAccent transition shadow-sm hover:shadow-md">
+              <header class="mb-2 flex items-center flex-wrap gap-2 text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">
+                <FormattedDate date={post.data.pubDate.toString()} />
+              </header>
+              <a href={`/writings/${post.slug}/`}>
+                <h2 class="text-xl md:text-2xl font-semibold text-theme-sun-text dark:text-theme-moon-text hover:underline">
+                  {post.data.title}
+                </h2>
+              </a>
+              <p class="text-theme-sun-textMuted dark:text-theme-moon-textMuted mt-2">
+                {post.data.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+
+      <!-- Pagination -->
+      <nav class="mt-12 flex justify-center gap-4">
+        {
+          currentPage > 1 && (
+            <a href={`?page=${currentPage - 1}`} class="px-4 py-2 rounded bg-theme-sun-primary text-black dark:text-theme-moon-text font-medium">
+              ← Previous
+            </a>
+          )
+        }
+        {
+          currentPage < totalPages && (
+            <a href={`?page=${currentPage + 1}`} class="px-4 py-2 rounded bg-theme-sun-primary text-black dark:text-theme-moon-text font-medium">
+              Next →
+            </a>
+          )
+        }
+      </nav>
+    </section>
+  </Layout>
 </html>
