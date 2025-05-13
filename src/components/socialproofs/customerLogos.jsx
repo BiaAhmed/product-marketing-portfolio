@@ -11,13 +11,13 @@ const logos = [
   '/images/companies-dark/xord.svg',
   '/images/companies-dark/patchcrafts.svg',
   '/images/companies-dark/lucidbee.svg',
-  '/images/companies-dark/frequency.svg',
   '/images/companies-dark/eternaexchange.svg',
   '/images/companies-dark/ehsanoptics.svg',
   '/images/companies-dark/cashflowapp.svg',
   '/images/companies-dark/blockapex.svg',
   '/images/companies-dark/alchemy.svg',
   '/images/companies-dark/a51.svg',
+  '/images/companies-dark/novon.svg',
 ];
 
 /* ------------------  INFINITE SCROLL LIST  ----------------------- */
