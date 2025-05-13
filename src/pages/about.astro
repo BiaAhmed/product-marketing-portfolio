@@ -1,13 +1,12 @@
 ---
-
 import { BaseHead } from '@components/seo';
 import Layout from '@layouts/layout.astro';
 ---
 
 <head>
   <BaseHead
-    title="Contact – Rabia Ahmed"
-    description="Have a project or an idea? Let's talk product marketing & growth."
+    title="About – Rabia Ahmed"
+    description="Get to know Rabia Ahmed – product marketer, builder, and storyteller."
     image="/images/ogimage.png" />
 </head>
 
@@ -19,30 +18,47 @@ import Layout from '@layouts/layout.astro';
                 opacity-0 dark:opacity-35
                 [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)]" />
 
-    <!-- content wrapper -->
-    <div class="relative z-10 max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- heading -->
-      <h1 class="text-center font-regular leading-[0.9] tracking-tight text-[min(12vw,72px)] text-gray-900 dark:text-white mb-12">
-        Meet Rabia
-        <span class="block text-gray-500 dark:text-gray-400 text-2xl sm:text-3xl">
-          product&nbsp;marketer
-        </span>
+    <div class="relative z-10 max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-neutral dark:prose-invert">
+      <h1 class="mb-2 font-semibold tracking-tight text-4xl sm:text-5xl text-gray-900 dark:text-white text-center">
+        I'm Rabia, and I turn overlooked products into breakout stories.
       </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-300 text-center mb-12">
+        High-agency product marketer with a builder’s mindset. Based in Islamabad, working globally.
+      </p>
 
-      <!-- intro -->
-      <div class="text-center space-y-6 mb-16">
-        <span class="inline-block bg-theme-sun-primary dark:text-theme-sun-text text-black text-xs font-bold tracking-widest px-3 py-1 rounded">
-          LET'S&nbsp;TALK
-        </span>
-        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
-          Got a project? Or just curious?
-        </h2>
-        <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-          Whether you're here to jam ideas, explore collaborations, or just say hi — drop a line below.
-        </p>
+      <p>It’s not enough to have a great product — someone has to translate its brilliance into something users can feel. That’s where I come in.</p>
+
+      <p>I help early-stage teams bridge the gap between what they’ve built and the people who’ll care about it. That often means jumping in before the strategy exists — mapping user flows, rewriting onboarding, shaping GTM, and quietly fixing the friction no one’s named yet.</p>
+
+      <p>It’s equal parts research, pattern recognition, and storytelling — three things I’ve spent years practicing.</p>
+
+      <h2 class="text-2xl font-bold mt-10">Here’s what I rely on most:</h2>
+      <ul>
+        <li><strong>Observe what’s not working.</strong> (Ask questions, read behavior, skip assumptions.)</li>
+        <li><strong>Name what makes it matter.</strong> (Turn features into benefits, and benefits into belief.)</li>
+        <li><strong>Make it move.</strong> (Copy, comms, onboarding, whatever’s blocking adoption.)</li>
+      </ul>
+
+      <p>I’ve worked in chaotic startup environments, launched without designers, and built GTM plans off Miro boards and DMs. I’ve led marketing from “we haven’t launched yet” to “we need users who pay,” and I’ve done it with one tab open to PostHog and another to Figma.</p>
+
+      <p>But what drives me most isn’t the stack — it’s the spark that happens when something finally clicks. When a founder hears their story the right way. When a product stops needing to explain itself. When users start showing up without being asked.</p>
+
+      <h2 class="text-2xl font-bold mt-10">A little outside the browser:</h2>
+      <p>I live in Islamabad with a head full of tabs and a to-do list that always includes “go outside.” I don’t always manage it — but when I do, you’ll find me walking tree-lined streets, writing through my phone notes, or daydreaming about cities I haven’t met yet.</p>
+
+      <p>Also: I’m deeply curious, permanently caffeinated, and endlessly rooting for underdog ideas.</p>
+
+      <div class="mt-10 text-center">
+        <p class="text-sm text-gray-500 dark:text-gray-400">Thanks for reading — now I’d love to learn about <em>you</em>.</p>
+        <div class="mt-4 space-x-4">
+          <a href="mailto:biaahmedy@gmail.com" class="inline-block text-sm font-semibold underline hover:text-theme-sun-primary dark:hover:text-theme-moon-primary transition">
+            biaahmedy@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/biaahmed" target="_blank" rel="noopener" class="inline-block text-sm font-semibold underline hover:text-theme-sun-primary dark:hover:text-theme-moon-primary transition">
+            LinkedIn ↗
+          </a>
+        </div>
       </div>
     </div>
-
   </section>
-
 </Layout>

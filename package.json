@@ -1,0 +1,37 @@
+{
+	"name": "rabiaahmed.me",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+	  "dev": "astro dev",
+	  "start": "astro dev",
+	  "build": "astro check && astro build",
+	  "preview": "astro preview",
+	  "serve": "node dist/server/entry.mjs",
+	  "astro": "astro",
+	  "check": "biome check ./src",
+	  "lint": "biome lint ./src",
+	  "format": "biome format --write ."
+	},
+	"dependencies": {
+	  "@astrojs/check": "^0.5.7",
+	  "@astrojs/mdx": "^4.2.6",
+	  "@astrojs/node": "^9.2.1",
+	  "@astrojs/react": "^3.2.0",
+	  "@astrojs/rss": "^4.0.5",
+	  "@astrojs/sitemap": "^3.1.0",
+	  "@astrojs/tailwind": "^5.1.5",
+	  "@tailus/themer-card": "^0.0.1",
+	  "astro": "^5.7.12",
+	  "lib-utils-ts": "^0.0.0-test",
+	  "react": "^18.2.0",
+	  "react-dom": "^18.2.0",
+	  "serve": "^14.2.4",
+	  "tailwindcss": "^3.4.1",
+	  "typescript": "^5.4.2"
+	},
+	"devDependencies": {
+	  "@biomejs/biome": "1.7.2",
+	  "@tailwindcss/typography": "^0.5.10"
+	}
+  }
