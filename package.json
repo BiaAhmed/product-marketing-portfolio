@@ -27,6 +27,7 @@
 		"lib-utils-ts": "^0.0.0-test",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
+		"serve": "^14.2.4",
 		"tailwindcss": "^3.4.1",
 		"typescript": "^5.4.2"
 	},
