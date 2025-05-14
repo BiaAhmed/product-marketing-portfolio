@@ -54,14 +54,14 @@
   p, li, span, small {
     font-weight: 400;
     font-family: 'Jost', sans-serif;
-    @apply text-theme-sun-text;
+    @apply text-gray-700 dark:text-gray-300;
   }
 
   .dark p, 
   .dark li, 
   .dark span, 
   .dark small {
-    @apply text-theme-moon-text;
+    @apply text-gray-700 dark:text-gray-300;
   }
 
   strong, b {

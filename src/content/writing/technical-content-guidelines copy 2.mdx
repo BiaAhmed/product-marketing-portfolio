@@ -1,124 +1,175 @@
 ---
-title: "Technical Content Guidelines"
-description: "Building side projects is my secret weapon for growth and innovation. More than just hobbies, they're my playground for learning and staying ahead"
-pubDate: 'Sept 1 2024'
-tags: ['writing', 'content', 'guidelines']
+title: 'Technical content style guide template'
+description: 'This long form article walks you through a repeatable framework for writing developer grade content. Use it as a template for early stage devtool startups and B2B SaaS teams that speak to technical audiences. Wherever you see BRAND, swap in your company name, share the doc with your writers, and start shipping clearer docs, blogs, and tutorials.'
+pubDate: '2025-09-01'
 ---
 
-- Based on the survey results
-    - The brand is positioned more towards the 'Modern' end of the scale, indicating that consumers see the brand as contemporary rather than traditional.
-    - In terms of expressiveness, the brand is seen as more expressive than reserved.
-    - For future positioning, the consensus leans towards the brand continuing to move in a modern direction.
-    - Pullflow's brand personality is viewed as more authoritative than friendly.
-    - Pullflow's brand personality is seen as more serious than playful.
-    - The brand has a perception that skews towards the elite rather than mass appeal.
-    - Lastly, Pullflow is seen as more rebellious than conventional.
-- Current survey’s alignment with core values
-    - **Compassion**: Pullflow's strong image needs a touch of kindness. Sharing customer success stories could help.
-    - **Commitment**: The brand's edgy reputation fits well with a commitment to excellence and innovation.
-    - **Curiosity**: Pullflow's modern look aligns with being open to new ideas and learning.
-    - **Craft**: The brand's mature image matches well with craftsmanship, but mixing in innovation will keep things fresh.
-    - **Conviviality**: Pullflow may need to lighten up a bit to reflect a friendlier, more social vibe.
-    - **Contentment**: While Pullflow's elite status suggests satisfaction, balancing the 'always on the move' feeling with moments of contentment is essential.
+## Why a style guide matters
 
-[More Examples of Do’s and Don’ts](https://www.notion.so/More-Examples-of-Do-s-and-Don-ts-fcd477947c7049ffbd9bdf5c22bc23f4?pvs=21)
+Software engineers notice when copy gets the details right. They also notice when it hand‑waves, over‑sells, or hides behind jargon. A clear style guide protects the reader’s time, anchors your brand voice, and keeps every contributor on the same path. The result is trust – the currency that turns curious developers into users and advocates.
 
-# **Guiding principles**
+> **Key takeaway**
+> Consistency is not an aesthetic preference. It is a signal of technical competence.
 
-The audience for Pullflow content (i.e. blogs and documentation) is **software engineers**. The content we publish should:
+---
 
-1. **Demonstrate deep expertise to develop trust with readers.** “They are a developer and they’ve dealt with my problem” is the perception we should cultivate from developers.
-2. **Be respectful of readers’ time by always being valuable.** Our content should **not** be thinly veiled sales pitches or lazy fluff for the sake of volume.
+## Audience
 
-In short, be that one really amazing instructor who was not only deeply knowledgeable, but also knew how to communicate effectively, and was still cool, relatable, and enthusiastic about teaching.
+BRAND writes first for working software engineers, second for technical product managers, and finally for executive stakeholders who influence budgets. Every paragraph should answer one of three developer questions:
 
-# **Voice and tone**
+1. Does this solve a real pain point in my daily workflow?
+2. Can I trust the author’s technical depth?
+3. Will trying this save me time or unlock new capabilities?
 
-*Content should strive to be relatable, like we’re on the same team as the readers - think the Principal Engineer who never makes you feel stupid and is delighted to share knowledge and participate in your growth.*
+When in doubt, address those questions explicitly.
 
-- **Human.** Educative but deeply empathetic, an expert but quietly confident.
-- **Plainspoken.** We understand the world our customers are living in: one muddled by hyperbolic language, upsells, and over-promises. We strip all that away and value clarity above all. Because businesses come to Pullflow to get to work, we avoid distractions like fluffy metaphors and cheap plays to emotion.
-- **Smart technical humor/Wry.** Give the readers a wink sometimes with humor they can relate to. ****Big companies are generally less able to make knowing references to internet culture / the overall zeitgeist. Us doing this makes it clear that Pullflow *gets it*.
-    - **Adding wryness into technical content:**
-    In long-form content, wry humor can be used sparingly to illustrate points, make the content more memorable, and show empathy towards common pain points. The key is to maintain the balance—ensuring the humor supports the educational value without overshadowing it.
-- **Translators.** Only experts can make what’s difficult look easy, and it’s our job to demystify B2B-speak and actually educate.
+**Quick self check**
 
-# **Language**
+* Can a mid‑level engineer skim the post and understand the main benefit in 30 seconds?
+* Does the article provide a runnable code sample or reproducible steps?
+* Are product mentions placed after value explanations, not before?
 
-*Content should read as though written by a developer for developers.*
+---
 
-- **Clear.** Avoid jargon and slang. Acronyms and abbreviations should be explained on first reference.
+## Voice and tone
 
-| **Bad** | **Good** |
-| --- | --- |
-| Utilize our RESTful services for enhanced synergistic outcomes. | Use our RESTful APIs to improve integration and efficiency. |
-| Our app has an easy-to-navigate UX/UI. | Our app features a user-friendly interface. |
-- **Simple.** Get to the point and avoid unnecessary complexity, redundancy, and verbal garnish.
+Picture a senior engineer who mentors interns without ego. She answers “silly” questions without sarcasm, sprinkles in a meme when the room feels heavy, and never hides complexity but breaks it into bite‑sized concepts. That is the reference voice.
 
-| Bad | Good |
-| --- | --- |
-| Implement a robust protocol to facilitate an omnichannel customer engagement platform. | Create a system that supports multiple customer communication channels. |
-| To commence the instantiation of the database... | To start the database setup... |
-- **Accurate.** Be specific and use terminology and phrases used by developers.
+| Attribute           | What it sounds like                                                                     | What to avoid                                                             |
+| ------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Human               | “Let’s walk through a real stack trace to see why this error fires.”                    | “Dear valued customer, our solution synergistically resolves all issues.” |
+| Plainspoken         | “Spin up a local dev container.”                                                        | “Commence environment instantiation.”                                     |
+| Wry technical humor | “Unix philosophy: do one thing well. Our CLI tries hard to mind its own business, too.” | Forced jokes, pop‑culture references that age in a month                  |
+| Translator          | “In HTTP terms, the server sends a 429 when you are too chatty.”                        | Vague metaphors like “The API gets grumpy if you poke it too much.”       |
 
-| Bad | Good |
-| --- | --- |
-| The thing that reads your code. | The compiler parses and executes your code. |
-| This module helps with the data stuff. | This module manages database transactions. |
-- **Inclusive.** Not only do we want to engage the readers, we want to include **all** of them. When writing about fictional people, switch up the pronouns (he / she / they) and consider using names from different cultures. Be judicious about cultural references that could be lost on some readers.
+> **Tip**
+> Humor should create empathy, not distraction. One witty aside per 500 words is plenty.
 
-| Bad | Good |
-| --- | --- |
-| Make a website | Build a web application |
-| Create APIs | Build APIs |
-| Released as open source software | Open sourced |
-| Search the database | Query the database |
-| Product specifications | Product requirements |
-| Really, really good at | Exceptional |
-| Front end | Frontend |
-| One can | You can |
+---
 
-# **Grammar and mechanics**
+## Language
 
-*Correctness matters but don’t get too hung up on perfection and minutiae. Below are some additional rules to follow.*
+A developer can forgive minor grammar slips, but sloppy terminology breaks credibility. Follow three rules: be clear, be precise, be inclusive.
 
-- Favor (un)ordered lists over inline lists to break up walls of text and make content easier to scan and digest.
-- Capitalize the start of every list item and end with a period.
-- Use italics and bolding to emphasize and highlight important takeaways.
-- Headings should use sentence case instead of title case.
-- There should be a single space before and after dashes and slashes, i.e. “foo / bar ” and “foo - bar”.
-- There should be a single space after periods.
-- Use Oxford commas, i.e. “foo, bar, and baz”, **not** “foo, bar and baz”.
-- Use block quotes when quoting more than a sentence. Anything shorter should be quoted inline.
-- Keep sentence structure simple, e.x. avoid more than three nested or chained clauses.
-- Use abbreviations or domain slang when appropriate to keep the voice human, e.x. “specs” instead of “specifications”, “JS” instead of “JavaScript”, and “local dev” instead of “local development environment”.
+### Clear
 
-# **Content and structure**
+Explain every acronym on first use. Write “Representational State Transfer (REST)” once, then use REST.
 
-- **Be factual.** Avoid phrases like “some have said that” and instead use positive assertions that you *could provide evidence for if asked*. Engineers are on alert for claims they can poke holes in, and once found, their trust in us is shattered. Be careful not to use social proof as a crutch. If referring to a user, describe exactly the value that the user receives from the product or feature.
+### Precise
 
-| People are saying our tool is the fastest. | Benchmarks show our tool processes data 20% faster than alternatives. |
-| --- | --- |
-| Many users find our interface intuitive. | User testing revealed 90% of participants found our interface easy to use. |
-- **Link to docs or more details whenever appropriate and possible 🔥**‍
-- **Use examples.** Abstract ideas or descriptions of complex processes should be clarified and augmented with examples, i.e. code snippets, diagrams, analogies, graphs, screenshots, GIFs, and etc. Code snippets should be in Typescript >= 3.7.x if the content is not language-specific. All code snippets should be functionally correct, use ***code formatting***, and follow generally accepted style rules.
+Name things the way the ecosystem names them. Use compiler, not “code reader.” Use index, not “special table.”
 
-**‍**
+### Inclusive
 
-| To improve performance, optimize your code. | To improve performance, refactor your loops to reduce complexity, as shown in this code snippet: **`for (let i = 0; i < items.length; i++) { /* optimized code */ }`**. |
-| --- | --- |
-|  | Our software can handle various tasks. |
-- **Don’t be afraid to get technical.** Since we expect our audience to feel comfortable reading a fairly technical document, including technical details can ****not only be clarifying but also make it clear that our content is not just an arm of our marketing function.
+Rotate pronouns, mix cultural names, and avoid references that assume a Western tech bubble.
 
-| Our software has good performance. | Our software utilizes a concurrent processing model to maximize efficiency, supporting up to 10,000 simultaneous connections. |
-| --- | --- |
-|  | The app is built with many modern technologies. |
-- **Provide context**. Give the reader a starting point so they understand the purpose, scope, and value of the content we’d like them to consume. What is the problem we’re solving, the use case we’re examining, or the idea we’re presenting?
-- **Show, don't Just tell:** Use concrete examples, such as code snippets, workflow diagrams, and use cases to illustrate how features work and the problems they solve.
+> **Counter example**
+> Bad: “When Bob writes his frontend he should…”
+> Better: “When Aisha updates the frontend she should…”
 
-# **Concluding notes**
+---
 
-- We respect our readers but should maintain a beginner's mindset. Our content should strive to strike a middle ground between being deeply technical but also deeply empathetic to more novice readers.
-- While blogs, tutorials, and docs are not explicit marketing material, they still shape brand perception and will drive inbound traffic. Polish, usefulness, accuracy, and integrity matter, but so does engagement.
+## Structure
 
-In essence, this content guidelines seem to strike the right balance between **being friendly and professional**, aligning well with Pullflow's core values.
+Developers scan before they commit. Help them by structuring every piece as follows:
+
+1. **Problem statement** – one or two sentences that frame the pain.
+2. **Why it matters** – a short paragraph with impact metrics or user quotes.
+3. **Solution overview** – what the reader will build or learn.
+4. **Step by step** – numbered sections, each ending with a working result.
+5. **Recap and next steps** – bullet summary and links to deeper docs.
+
+Keep headings in sentence case, not title case. Use ordered lists for sequences, unordered lists for options. Wrap code blocks in triple backticks with language hints, e.g. \`\`\`ts.
+
+---
+
+## Content style examples
+
+Below is a before‑and‑after rewrite to illustrate how the guidelines apply.
+
+| Before                                                                               | After                                                                                                                                        |
+| ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Our platform facilitates omnichannel engagement through advanced RESTful interfaces. | This tutorial shows you how to call BRAND REST APIs from a Node script so you can send updates to Slack, email, and SMS with one function. |
+| To commence the instantiation of the database...                                     | To start the database setup...                                                                                                               |
+
+Notice the after version: speaks directly to the reader, names concrete artifacts, and previews the payoff.
+
+---
+
+## Do’s and Don’ts
+
+**Do**
+
+* Quote exact benchmark numbers rather than saying “fast.”
+* Link to source docs whenever you mention a class, CLI flag, or RFC.
+* Show errors as well as happy paths.
+
+**Don’t**
+
+* Gate critical knowledge behind sign‑up walls.
+* Use product screenshots as filler; every image must teach.
+* Copy marketing slogans into technical tutorials.
+
+---
+
+## Grammar mechanics quick sheet
+
+| Rule                                        | Example                           |
+| ------------------------------------------- | --------------------------------- |
+| Oxford comma                                | “foo, bar, and baz”               |
+| One space after periods                     | “End of sentence. Next sentence.” |
+| Single space around dashes                  | “foo - bar”                       |
+| Capitalize list items and end with a period | “- Install dependencies.”         |
+
+Keep sentences under 25 words when possible. If you need three commas, consider splitting the sentence.
+
+---
+
+## Putting it all together – a mini template
+
+````md
+# How to {do X} with [BRAND]
+
+<80 word intro that states the pain and the payoff>
+
+## prerequisites
+- Node 20 or higher.
+- BRAND CLI 1.4.0.
+
+## step 1 – authenticate once
+```bash
+brand login --token $YOUR_TOKEN
+````
+
+After login the CLI stores a temp key at `~/.brand`. No need to repeat this step.
+
+## step 2 – push your first job
+
+```ts
+import { Job } from '@brand/sdk';
+...
+
+## recap
+
+* You authenticated and pushed your first job.
+* Next, explore retries and webhooks in the docs.
+```
+Copy that skeleton into any tutorial and you are already 70 percent done.
+
+---
+
+## Final checklist before you hit publish
+- [ ] Title promises a clear outcome and uses verbs.  
+- [ ] Meta description under 160 characters.  
+- [ ] All code blocks compile or run.  
+- [ ] Claims backed by benchmark, user quote, or reference.  
+- [ ] At least one diagram, screenshot, or GIF that teaches.  
+- [ ] Internal links to docs and related posts.  
+- [ ] Post manually proofread – spell check is not enough.
+
+---
+
+## Closing thought
+Great technical writing feels like pair programming with a senior you trust. Aim for that feeling every time you publish. When readers walk away having fixed a bug or learned a new trick, they remember the brand that empowered them – and they come back.
+
+```
