@@ -133,7 +133,12 @@
       100% { transform: translateX(-50%); }
     }
     .animate-scroll-left {
-      animation: scrollLeft 40s linear infinite;
+      animation: scrollLeft 30s linear infinite;
     }
   }
   
+  ::selection 
+    {
+      @apply bg-theme-sun-primary text-theme-sun-primaryText;
+    }
+	
