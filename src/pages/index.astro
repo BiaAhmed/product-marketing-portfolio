@@ -9,6 +9,7 @@ import Faq from '@components/misc/faq'
 import Testimonials from '@components/socialproofs/testimonials';
 import Cta from '@components/cta/home-cta.astro';
 import Showcase from '@components/socialproofs/showcase.astro';
+import Cases from '@components/socialproofs/cases.astro';
 ---
 
 <!doctype html>
@@ -25,8 +26,9 @@ import Showcase from '@components/socialproofs/showcase.astro';
 		<div
 	>
 			<Hero/>
-			<Stack/>
 			<Showcase/>
+			<Cases/>
+			<Stack/>
 			<Faq client:load/>
 			<Testimonials client:load/>
 			<Cta/>

@@ -1,4 +1,4 @@
-export const SITE_TITLE = "Rabia Ahmed - Product Marketing, SEO, and Growth";
+export const SITE_TITLE = "Rabia Ahmed | Product Marketer for AI & Dev Tools";
 export const SITE_DESCRIPTION = "Blend AI/ML and marketing with a practical, sustainable, scalable approach";
 
 export interface MenuItem {
