@@ -29,7 +29,7 @@
   }
 
   a:hover {
-    @apply text-theme-sun-accent  tracking-wide;
+    @apply text-theme-sun-accent ;
   }
 
   .dark a:hover {
@@ -75,7 +75,7 @@
   }
   
   .btn-primary {
-    @apply btn bg-theme-sun-primary text-theme-sun-primaryText hover:bg-theme-sun-primary hover:text-theme-sun-primaryText dark:bg-theme-moon-primary dark:text-theme-moon-primaryText dark:hover:bg-theme-moon-primary dark:hover:text-theme-moon-primaryText;
+    @apply btn bg-theme-sun-primary text-theme-sun-primaryText hover:bg-theme-sun-primary hover:text-theme-sun-primaryText dark:bg-theme-sun-accent dark:text-theme-moon-primaryText dark:hover:bg-theme-moon-accent dark:hover:text-theme-moon-primaryText ;
   }
   
   .btn-secondary {
@@ -86,10 +86,11 @@
     @apply btn bg-theme-sun-neutral text-theme-sun-neutralText hover:opacity-90 dark:bg-theme-moon-neutral dark:text-theme-moon-neutralText;
   }
 
-  .test {
-    @apply bg-theme-sun-primary px-3 py-2 rounded-md no-underline text-black dark:bg-theme-moon-primary dark:text-theme-moon-primaryText hover:bg-white hover:dark:bg-theme-moon-textMuted hover:dark:text-theme-moon-primaryText;
-  }
-}
+
+  /* Add hover styles without changing dimensions */ .btn:hover { @apply text-theme-sun-neutral bg-theme-sun-bgAccent dark:bg-theme-moon-bgAccent dark:text-theme-moon-neutral; }
+.btn-primary:hover { @apply bg-theme-sun-primary dark:bg-theme-moon-primary; filter: brightness(0.95); }
+.btn-secondary:hover, .btn-neutral:hover { filter: brightness(0.95); } }
+
 
 .tooltip {
   @apply absolute z-50 left-1/2 bottom-0 translate-x-[-50%] translate-y-full mt-2 
