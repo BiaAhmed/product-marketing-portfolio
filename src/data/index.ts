@@ -35,35 +35,6 @@ export const ogImage = {
 	alt: "Rabia's Space",
 };
 
-
-export const products = [
-	{
-		name: "Fli.so",
-		url: "https://fli.so",
-		image: "/products/fli.png",
-	},
-	{
-		name: "Uiino",
-		url: "https://uiino.com",
-		image: "/products/uiino.png",
-	},
-	{
-		name: "SticAI",
-		url: "https://sticai.com",
-		image: "/products/sticai.png",
-	},
-	{
-		name: "Dun",
-		url: "https://dunsuite.com",
-		image: "/products/dun.png",
-	},
-	{
-		name: "DunTasks",
-		url: "https://duntasks.com",
-		image: "/products/duntasks.png",
-	},
-];
-
 export const socialLinks = [
 	{
 		label: "@x",

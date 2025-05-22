@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,34 +19,13 @@
 
   a {
     font-weight: 500;
-    @apply text-theme-sun-text;
-  }
-
-  .dark a {
-    @apply text-theme-moon-text;
-  }
-
-  a:hover {
-    @apply text-theme-sun-accent ;
-  }
-
-  .dark a:hover {
-    @apply text-theme-moon-accent;
+    @apply text-theme-sun-text dark:text-theme-moon-text hover:text-theme-sun-accent dark:hover:text-theme-moon-accent;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Crimson Text', serif;
     font-weight: 300;
-    @apply text-theme-sun-text;
-  }
-
-  .dark h1, 
-  .dark h2, 
-  .dark h3, 
-  .dark h4, 
-  .dark h5, 
-  .dark h6 {
-    @apply text-theme-moon-text;
+    @apply text-theme-sun-text dark:text-theme-moon-text;
   }
 
   p, li, span, small {
@@ -57,89 +34,78 @@
     @apply text-gray-700 dark:text-gray-300;
   }
 
-  .dark p, 
-  .dark li, 
-  .dark span, 
-  .dark small {
-    @apply text-gray-700 dark:text-gray-300;
-  }
-
   strong, b {
     font-weight: 700;
+  }
+
+  ::selection {
+    @apply bg-theme-sun-primary text-theme-sun-primaryText;
   }
 }
 
 @layer components {
   .btn {
-    @apply rounded-button px-5 py-2 no-underline inline-block hover:text-theme-sun-neutral dark:hover:text-theme-moon-neutral bg-theme-sun-bgAccent hover:bg-theme-sun-bgAccent dark:bg-theme-moon-bgAccent dark:hover:bg-theme-moon-bgAccent ;
+    @apply rounded-button px-5 py-2 inline-block no-underline 
+           bg-theme-sun-bgAccent hover:bg-theme-sun-bgAccent 
+           text-theme-sun-text hover:text-theme-sun-neutral 
+           dark:bg-theme-moon-bgAccent dark:hover:bg-theme-moon-bgAccent 
+           dark:text-theme-moon-text dark:hover:text-theme-moon-neutral;
   }
-  
+
   .btn-primary {
-    @apply btn bg-theme-sun-primary text-theme-sun-primaryText hover:bg-theme-sun-primary hover:text-theme-sun-primaryText dark:bg-theme-sun-accent dark:text-theme-moon-primaryText dark:hover:bg-theme-moon-accent dark:hover:text-theme-moon-primaryText ;
+    @apply btn 
+           bg-theme-sun-primary text-theme-sun-primaryText 
+           dark:bg-theme-sun-accent dark:text-theme-moon-primaryText 
+           hover:bg-theme-sun-primary dark:hover:bg-theme-moon-accent 
+           dark:hover:text-theme-moon-primaryText;
+    filter: brightness(0.95);
   }
-  
+
   .btn-secondary {
-    @apply btn bg-theme-sun-secondary text-theme-sun-secondaryText hover:opacity-90 dark:bg-theme-moon-secondary dark:text-theme-moon-secondaryText;
+    @apply btn bg-theme-sun-secondary text-theme-sun-secondaryText 
+           dark:bg-theme-moon-secondary dark:text-theme-moon-secondaryText 
+           hover:opacity-90;
   }
-  
+
   .btn-neutral {
-    @apply btn bg-theme-sun-neutral text-theme-sun-neutralText hover:opacity-90 dark:bg-theme-moon-neutral dark:text-theme-moon-neutralText;
+    @apply btn bg-theme-sun-neutral text-theme-sun-neutralText 
+           dark:bg-theme-moon-neutral dark:text-theme-moon-neutralText 
+           hover:opacity-90;
   }
-
-
-  /* Add hover styles without changing dimensions */ .btn:hover { @apply text-theme-sun-neutral bg-theme-sun-bgAccent dark:bg-theme-moon-bgAccent dark:text-theme-moon-neutral; }
-.btn-primary:hover { @apply bg-theme-sun-primary dark:bg-theme-moon-primary; filter: brightness(0.95); }
-.btn-secondary:hover, .btn-neutral:hover { filter: brightness(0.95); } }
-
-
-.tooltip {
-  @apply absolute z-50 left-1/2 bottom-0 translate-x-[-50%] translate-y-full mt-2 
-    bg-black/90 text-white text-xs sm:text-sm px-4 py-2 rounded-md 
-    max-w-none min-w-[220px] whitespace-normal text-center 
-    opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 
-    transition-all duration-200 ease-out pointer-events-none;
 }
 
-.tooltip-top {
-  /* Reposition the tooltip above instead of below */
+@layer utilities {
   .tooltip {
+    @apply absolute z-50 left-1/2 bottom-0 translate-x-[-50%] translate-y-full mt-2 
+           bg-black/90 text-white text-xs sm:text-sm px-4 py-2 rounded-md 
+           max-w-none min-w-[220px] whitespace-normal text-center 
+           opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 
+           transition-all duration-200 ease-out pointer-events-none;
+  }
+
+  .tooltip-top .tooltip {
     @apply bottom-auto top-0 translate-y-[-100%] mt-0 mb-2;
   }
-}
 
-/* ------------------------------------------------------------------
-   Logo‑swapping utility: one SVG, works in both light & dark themes
-   ------------------------------------------------------------------ */
-   @layer utilities {
-    .theme-logo {
-      @apply transition-all duration-200 grayscale contrast-50 opacity-100;
-    }
-  
-    /* Light theme → invert to dark / gray */
-    html:not(.dark) .theme-logo {
-      @apply invert brightness-100;
-    }
-  
-    /* Hover / focus */
-    .theme-logo:hover,
-    .theme-logo:focus-visible {
-      @apply grayscale opacity-50;
-    }
+  .theme-logo {
+    @apply transition-all duration-200 grayscale contrast-50 opacity-100;
   }
-  
-  /* (optional) If you don’t have a scroll-left animation yet: */
-  @layer utilities {
-    @keyframes scrollLeft {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .animate-scroll-left {
-      animation: scrollLeft 30s linear infinite;
-    }
+
+  html:not(.dark) .theme-logo {
+    @apply invert brightness-100;
   }
-  
-  ::selection 
-    {
-      @apply bg-theme-sun-primary text-theme-sun-primaryText;
-    }
-	
+
+  .theme-logo:hover,
+  .theme-logo:focus-visible {
+    @apply grayscale opacity-50;
+  }
+
+  @keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-scroll-left {
+    animation: scrollLeft 30s linear infinite;
+  }
+}

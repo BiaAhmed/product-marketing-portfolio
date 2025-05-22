@@ -2,7 +2,7 @@
 import { BaseHead } from '@components/seo';
 import Stack from '@components/socialproofs/stack.astro';
 import { SITE_TITLE } from '@data/index';
-import { SITE_DESCRIPTION, socialLinks } from '@data/index';
+import { SITE_DESCRIPTION } from '@data/index';
 import Hero from '@components/misc/hero.astro';
 import Layout from '../layouts/layout.astro';
 import Faq from '@components/misc/faq'
@@ -23,26 +23,14 @@ import Cases from '@components/socialproofs/cases.astro';
 	</head>
 	
 	<Layout>
-		<div
-	>
+		<div>
 			<Hero/>
 			<Showcase/>
-			<Cases/>
+			<Cases />
 			<Stack/>
-			<Faq client:load/>
-			<Testimonials client:load/>
+			<Faq client:visible/>
+			<Testimonials client:visible/>
 			<Cta/>
-
-				<!-- 
-				{
-					socialLinks.map((link) => (
-						<a
-							href={link.url}
-							class='text-lg font-medium text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline underline-offset-2'>
-							{link.label}
-						</a>
-					))
-				} -->
 			</div>
 		</div>
 	

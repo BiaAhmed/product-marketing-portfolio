@@ -1,24 +1,38 @@
 ---
 import { BaseHead } from '@components/seo';
 import { Header } from '@components/misc';
-import Footer  from '@components/misc/footers.astro';
-import { SITE_TITLE } from '@data/index';
-import { SITE_DESCRIPTION, socialLinks } from '@data/index';
+import Footer from '@components/misc/footers.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '@data/index';
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="rabia" class="scroll-smooth ">
-    <head>
-		<BaseHead
-			title={SITE_TITLE}
-			description={SITE_DESCRIPTION}
-			image='/images/ogimage.png'
-		/>
-	</head>
+<html lang="en" data-theme="rabia" class="scroll-smooth">
+  <head>
+    <!-- Preload fonts non-blocking with async fallback -->
+    <link 
+      rel="preload" 
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Jost:wght@300;400;500;600;700&display=swap" 
+      as="style" 
+      onload="this.onload=null;this.rel='stylesheet'" 
+    />
+    <noscript>
+      <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Jost:wght@300;400;500;600;700&display=swap" 
+      />
+    </noscript>
 
-    <body class="overflow-x-hidden dark:bg-gray-950 ">
-        <Header />
-        <slot />
-        <Footer />
-    </body>
+    <!-- Global Meta & Open Graph -->
+    <BaseHead
+      title={SITE_TITLE}
+      description={SITE_DESCRIPTION}
+      image="/images/ogimage.png"
+    />
+  </head>
+
+  <body class="overflow-x-hidden bg-theme-sun-bg text-theme-sun-text dark:bg-theme-moon-bg dark:text-theme-moon-text">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
 </html>

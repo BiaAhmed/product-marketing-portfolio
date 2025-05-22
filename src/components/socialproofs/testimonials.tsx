@@ -55,6 +55,8 @@ export default function Testimonials() {
                         className="inline-block w-12 h-12 rounded-full border"
                         src={t.avatar}
                         alt={t.author}
+                        loading="lazy"
+                        decoding="async"
                       />
                     </button>
                   ))}

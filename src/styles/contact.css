@@ -1,120 +1,76 @@
-/* ============================= */
-/* Contact Page Styles           */
-/* ============================= */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* General Page Styling */
-body {
+@layer base {
+  body.contact-page {
+    @apply bg-[#0d0d0d] text-white font-sans m-0 p-0;
     font-family: 'Inter', sans-serif;
-    background-color: #0d0d0d; /* Dark background */
-    color: #ffffff;
-    margin: 0;
-    padding: 0;
   }
-  
-  /* Section Styling */
+
+  h2.contact-title {
+    @apply text-4xl font-bold mb-2;
+  }
+
+  p.contact-subtext {
+    @apply text-lg opacity-80 mb-5;
+  }
+}
+
+@layer components {
   .section-sm {
-    padding: 4rem 0;
+    @apply py-16;
   }
-  
-  /* Centering the Form */
+
   .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
+    @apply w-[90%] max-w-[1200px] mx-auto text-center;
   }
-  
-  /* Title Styling */
-  h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+
+  form.contact-form {
+    @apply bg-[#181818] p-8 rounded-xl max-w-xl mx-auto 
+           shadow-[0_0_20px_rgba(255,255,255,0.05)];
   }
-  
-  p {
-    font-size: 1.2rem;
-    opacity: 0.8;
-    margin-bottom: 20px;
+
+  .contact-form label {
+    @apply text-base font-semibold block text-left;
   }
-  
-  /* ============================= */
-  /* Form Styling */
-  /* ============================= */
-  
-  form {
-    background: #181818; /* Slightly lighter than the background */
-    padding: 2rem;
-    border-radius: 12px;
-    max-width: 600px;
-    margin: auto;
-    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.05);
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    @apply w-full mt-2 p-3 rounded-lg bg-[#252525] border border-[#333] 
+           text-white text-base;
   }
-  
-  /* Form Fields */
-  input,
-  textarea,
-  select {
-    width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    border-radius: 8px;
-    background: #252525;
-    border: 1px solid #333;
-    color: #fff;
-    font-size: 1rem;
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    @apply text-white/50;
   }
-  
-  input:focus,
-  textarea:focus,
-  select:focus {
-    outline: none;
-    border-color: #8a2be2; /* Purple focus effect */
-    box-shadow: 0px 0px 10px rgba(138, 43, 226, 0.5);
+
+  .contact-form input:focus,
+  .contact-form textarea:focus,
+  .contact-form select:focus {
+    @apply outline-none border-purple-700 shadow-[0_0_10px_rgba(138,43,226,0.5)];
   }
-  
-  /* Form Labels */
-  label {
-    font-size: 1rem;
-    font-weight: 600;
-    display: block;
-    text-align: left;
+
+  .contact-submit {
+    @apply w-full mt-4 p-3 rounded-lg bg-transparent border border-white 
+           text-white text-base font-semibold cursor-pointer transition duration-300;
   }
-  
-  /* Placeholder Styling */
-  input::placeholder,
-  textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+
+  .contact-submit:hover {
+    @apply bg-[#04564a] border-transparent -translate-y-[2px];
   }
-  
-  /* Submit Button */
-  button {
-    width: 100%;
-    padding: 12px;
-    background: #0000;
-    border: #ffffff solid 1px; 
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin-top: 15px;
-  }
-  
-  button:hover {
-    background: #04564a;
-    border: #0000 solid 1px; 
-    transform: translateY(-2px); /* Slight lift effect */
-  }
-  
-  /* Responsive Design */
+}
+
+@layer utilities {
   @media (max-width: 768px) {
-    form {
-      padding: 1.5rem;
+    .contact-form {
+      @apply p-6;
     }
-  
-    h2 {
-      font-size: 2rem;
+
+    .contact-title {
+      @apply text-2xl;
     }
   }
-  
+}
