@@ -40,7 +40,7 @@ function InfiniteScroll({ className = '' }) {
                  [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
       <ul ref={listRef} className={`flex items-center h-full ${className}`}>
         {logos.map((src) => (
-          <li key={src} className="mx-2 sm:mx-4 flex items-center h-16 shrink-0">
+          <li key={src} className="mx-2 sm:mx-4 flex items-center h-16 shrink-0" width="181" height="64">
             <img
               src={src}
               alt=""

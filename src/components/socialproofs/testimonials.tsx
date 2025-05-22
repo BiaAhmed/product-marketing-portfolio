@@ -6,14 +6,14 @@ const testimonials = [
     text: `Rabia joined PullFlow as a content marketer and was quickly promoted to Head of Marketing. She owned pre‑GTM strategy, dove deep into SQL and PostHog, shipped an Astro site in record time, and never shied away from messy problems. High energy, high agency, and a contrarian viewpoint that sparked real innovation.`,
     author: 'Zak Mandhro',
     role: 'Founder of PullFlow / (ex‑Google, Apple; Stanford)',
-    avatar: '/images/people/zak.png',
+    avatar: '/images/people/zak.webp',
   },
   {
     id: 2,
     text: `I would 100% recommend Rabia if you are looking for an analytics, data or technical SEO strategist. We have worked on a couple of projects together and both her knowledge and attention to detail always impresses me. She's also a wonderful human to work with, very friendly and approachable. The most recent project was sorting out existing data discrepancies with Google Analytics and getting us set up and sorted with GTM & GA4, including training on how to use GA4. Very impressed and hope to work on many more projects in the future.`,
     author: 'Arham Tariq',
-    role: 'Founder of Versoly',
-    avatar: '/images/people/arham.jpeg',
+    role: 'Head of Marketing @Xord',
+    avatar: '/images/people/arham.webp',
   },
 ];
 
