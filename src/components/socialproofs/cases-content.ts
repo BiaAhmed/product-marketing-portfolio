@@ -52,7 +52,7 @@ export const painPointCategories = [
           "Created targeted content for each user segment based on their technical background",
           "Built and tested multiple onboarding pathways using feature flags"
         ],
-        ctaLink: "#",
+        ctaLink: "https://oceanic-fireman-8fc.notion.site/Pullflow-From-pre-GTM-to-steady-traction-Rabia-Ahmed-8171faba2e394fa099e512c40cfc1f63",
       },
       {
         logo: "/images/companies-light/xord.svg",
@@ -81,7 +81,7 @@ export const painPointCategories = [
           "Created a Discord reward system for community contributions to content",
           "Implemented schema markup across all technical documentation"
         ],
-        ctaLink: "#",
+        ctaLink: "https://xord.com",
       },
       {
         logo: "/images/companies-light/alchemy.svg",
@@ -110,7 +110,7 @@ export const painPointCategories = [
           "Trained the engineering team on documentation best practices",
           "Implemented a new publishing workflow to reduce bottlenecks"
         ],
-        ctaLink: "#",
+        ctaLink: "https://alchemy.com",
       },
       {
         logo: "/images/companies-light/expedite.svg",
@@ -139,6 +139,6 @@ export const painPointCategories = [
           "Implemented progressive disclosure of technical details based on user engagement signals",
           "Developed and A/B tested trust-building elements specific to the Web3 audience"
         ],
-        ctaLink: "#",
+        ctaLink: "https://expeditestudio.com",
       },
     ];
