@@ -22,7 +22,7 @@
     @apply text-theme-sun-text dark:text-theme-moon-text hover:text-theme-sun-accent dark:hover:text-theme-moon-accent;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3 {
     font-family: 'Crimson Text', serif;
     font-weight: 300;
     @apply text-theme-sun-text dark:text-theme-moon-text;

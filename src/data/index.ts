@@ -16,8 +16,8 @@ export const menuItems: MenuItem[] = [
 		url: "/writings",
 	},
 	{
-		label: "thoughts",
-		url: "/thoughts",
+		label: "resources",
+		url: "/resources",
 	},
 	{
 		label: "ships",

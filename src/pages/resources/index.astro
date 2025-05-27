@@ -1,5 +1,5 @@
 ---
-import { ThoughtsItem } from '@components/cards';
+import { ResourcesItem } from '@components/cards';
 import { BaseHead } from '@components/seo';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
 import { getCollection } from 'astro:content';
@@ -7,22 +7,22 @@ import Layout from '@layouts/layout.astro';
 
 const PAGE_SIZE = 6;
 
-const allThoughts = (await getCollection('thought')).sort(
+const allResources = (await getCollection('resource')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
 const start = (currentPage - 1) * PAGE_SIZE;
 const end = start + PAGE_SIZE;
-const thoughts = allThoughts.slice(start, end);
-const totalPages = Math.ceil(allThoughts.length / PAGE_SIZE);
+const resources = allResources.slice(start, end);
+const totalPages = Math.ceil(allResources.length / PAGE_SIZE);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead
-      title={`Thoughts — ${SITE_TITLE}`}
+      title={`Resources — ${SITE_TITLE}`}
       description={SITE_DESCRIPTION}
       image="/images/ogimage.png"
     />
@@ -30,17 +30,17 @@ const totalPages = Math.ceil(allThoughts.length / PAGE_SIZE);
   <Layout>
     <section class="px-6 pt-24 pb-16 max-w-3xl mx-auto">
       <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-theme-sun-text dark:text-theme-moon-text mb-12">
-        thoughts
+        resources
       </h1>
 
       <div class="space-y-12">
         {
-          thoughts.map((thought, i) => (
-            <ThoughtsItem
-              category={thought.data.category}
-              content={thought.data.description}
-              pubDate={thought.data.pubDate}
-              slug={thought.slug}
+          resources.map((resource, i) => (
+            <ResourcesItem
+              category={resource.data.category}
+              content={resource.data.description}
+              pubDate={resource.data.pubDate}
+              slug={resource.slug}
               index={i}
             />
           ))

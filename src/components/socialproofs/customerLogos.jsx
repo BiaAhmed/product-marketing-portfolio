@@ -19,6 +19,7 @@ const logos = [
   '/images/companies-dark/a51.svg',
   '/images/companies-dark/novon.svg',
   '/images/companies-dark/expedite.svg',
+  '/images/companies-dark/metiscore.svg',
 ];
 
 /* ------------------  INFINITE SCROLL LIST  ----------------------- */

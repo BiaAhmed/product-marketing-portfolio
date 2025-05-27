@@ -1,6 +1,6 @@
 Want to help me improve my portfolio? Here's how you can contribute:
 
-- **Feedback:** Share your thoughts on the design, content, or overall impression.
+- **Feedback:** Share your resources on the design, content, or overall impression.
 - **Suggestions:** Propose ideas for new features or improvements.
 - **Bug Reports:** Let me know if you find any issues or errors.
 

@@ -1,7 +1,7 @@
-![ A website with the title "Rabia's internet space" and navigation links for "home", "writing", "thoughts", and "ships".](https://github.com/Spikeyrabia/rabiaahmed.me/assets/23400022/ff3120ee-281b-4607-995e-bc2e8f9edef6)
+![ A website with the title "Rabia's internet space" and navigation links for "home", "writing", "resources", and "ships".](https://github.com/Spikeyrabia/rabiaahmed.me/assets/23400022/ff3120ee-281b-4607-995e-bc2e8f9edef6)
 
 # 🌐 rabia's – internet space
-hey! this is my personal corner on the web where I share my thoughts, ideas, and projects. feel free to explore and contact me if you have any questions or just want to chat. 
+hey! this is my personal corner on the web where I share my resources, ideas, and projects. feel free to explore and contact me if you have any questions or just want to chat. 
 
 ## 📖 about project
 this is a simple personal website i built using [astro](https://astro.build/), a static site generator. i chose Astro for its speed, flexibility, and ease of use. i hope you like the site!
@@ -9,7 +9,7 @@ this is a simple personal website i built using [astro](https://astro.build/), a
 
 ## ✨ features
 - **writings**: a collection of my blog posts and articles
-- **thoughts**: a place for me to share my random thoughts and ideas (more like tweets or quotes)
+- **resources**: a place for me to share my random resources and ideas (more like tweets or quotes)
 - **ships**: a list of projects that i've worked on or contributed to (github style commit graph will be generated based on the things i've worked on)
 
 ## 🛠️ tech stack

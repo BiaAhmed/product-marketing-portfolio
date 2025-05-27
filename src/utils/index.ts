@@ -17,7 +17,7 @@ export function clsx(...args: any[]): string {
   return args.filter(Boolean).join(" ");
 }
 
-// function that returns tailwindcss colors bg based on category for thoughts like, ai, design, product, engineering, productivity, etc
+// function that returns tailwindcss colors bg based on category for resources like, ai, design, product, engineering, productivity, etc
 export function getCategoryColor(category: string): string {
   switch (category) {
     case "ai":
@@ -34,7 +34,7 @@ export function getCategoryColor(category: string): string {
       return "bg-blue-300";
     case "opensource":
       return "bg-orange-400";
-    case "thoughts":
+    case "resources":
       return "bg-red-400";
     case "tools":
       return "bg-cyan-300";

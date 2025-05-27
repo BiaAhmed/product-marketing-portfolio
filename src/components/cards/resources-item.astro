@@ -7,7 +7,7 @@ const { category, content, pubDate, index, slug } = Astro.props;
 
 ---
 
-<a href={`/thoughts/${slug}`}>
+<a href={`/resources/${slug}`}>
 	<article
 		id={category}
 		class={clsx(
@@ -18,7 +18,7 @@ const { category, content, pubDate, index, slug } = Astro.props;
 		<span class='absolute top-3 right-3 text-5xl text-gray-700'>"</span>
 		<h5 class='text-gray-900 dark:text-gray-900 w-full font-regular text-md'>
 			Rabia on
-			<span class='underline decoration-wavy'>{category}</span>
+			<span class='underline decoration-theme-sun-primary'>{category}</span>
 		</h5>
 		<h1
 			class='text-black dark:text-black font-regular w-full sm:text-xl md:text-2xl indent-9'>

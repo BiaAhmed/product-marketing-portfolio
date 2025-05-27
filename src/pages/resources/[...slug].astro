@@ -1,11 +1,11 @@
 ---
-import ThoughtsLayout from '@layouts/thoughts-layout.astro';
+import ResourcesLayout from '@layouts/resources-layout.astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
 import { ScrollProgress } from '@components/misc';
 import { getReadingTime } from '@utils/index';
 
-const posts = await getCollection('thought');
-type Props = CollectionEntry<'thought'>;
+const posts = await getCollection('resource');
+type Props = CollectionEntry<'resource'>;
 
 const { slug } = Astro.params;
 const post = posts.find((page) => page.slug === slug);
@@ -16,7 +16,7 @@ const readingTime = getReadingTime(post.body);
 const { Content } = await post.render();
 ---
 
-<ThoughtsLayout {...post.data} readingTime={readingTime}>
+<ResourcesLayout {...post.data} readingTime={readingTime}>
 	<Content />
 	<ScrollProgress />
-</ThoughtsLayout>
+</ResourcesLayout>

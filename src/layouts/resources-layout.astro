@@ -5,7 +5,7 @@ import { BaseHead } from '@components/seo';
 import Layout from '@layouts/layout.astro';
 import { clsx } from '@utils/index';
 
-type Props = CollectionEntry<'thought'>['data'];
+type Props = CollectionEntry<'resource'>['data'];
 
 const { title, description, showTldr, pubDate, readingTime } = Astro.props;
 ---
@@ -44,8 +44,8 @@ const { title, description, showTldr, pubDate, readingTime } = Astro.props;
       <div
         class={clsx(
           'w-full max-w-3xl prose prose-lg my-3 px-2 sm:px-0',
-          'prose-p:font-regular dark:prose-invert prose-a:underline prose-a:bg-red-50 prose-a:decoration-red-500',
-          'dark:prose-a:bg-red-950 dark:prose-a:decoration-red-400 dark:prose-a:underline',
+          'prose-p:font-regular dark:prose-invert prose-a:underline prose-a:bg-yellow-50 prose-a:decoration-theme-sun-primary',
+          'dark:prose-a:bg-theme-sun-accent dark:prose-a:decoration-theme-sun-primary dark:prose-a:underline',
           'prose-h1:font-regular prose-h2:font-regular prose-h3:font-regular',
           'prose-h4:font-regular prose-h5:font-regular prose-h6:font-regular',
           'prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight',

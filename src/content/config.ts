@@ -26,8 +26,8 @@ const writing = defineCollection({
   }),
 });
 
-/* ───────────────────────────────────────── thought ──────────────────────────────────────── */
-const thought = defineCollection({
+/* ───────────────────────────────────────── resource ──────────────────────────────────────── */
+const resource = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -66,4 +66,4 @@ const contact = defineCollection({
 });
 
 /* ───────────────────────────────────────── export ───────────────────────────────────────── */
-export const collections = { whoami, writing, thought, ship, contact };
+export const collections = { whoami, writing, resource, ship, contact };
