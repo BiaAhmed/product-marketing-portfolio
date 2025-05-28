@@ -44,7 +44,7 @@ export const painPointCategories = [
         testimonial: {
           quote: "The persona-based approach completely changed how we think about our product. We're now seeing much better engagement from day one.",
           author: "Zak Mandhro",
-          role: "CEO @PullFlow"
+          role: "CEO @PullFlow / (ex‑Google, Apple; Stanford)"
         },
         howDetails: [
           "Conducted 27 user interviews to identify personas and pain points",
