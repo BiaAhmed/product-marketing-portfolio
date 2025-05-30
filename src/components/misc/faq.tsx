@@ -16,9 +16,9 @@ const faqs = [
       'Activation, paid conversion, and retained revenue. Vanity traffic is for dashboards, not decisions.',
   },
   {
-    question: 'What time zones do you cover?',
+    question: 'Do you work with international clients and accommodate different time zones?',
     answer:
-      'GMT+5 core hours plus overlap blocks for PST and CET teams.',
+      "Absolutely! I’ve worked across all sorts of time zones — from San Francisco to New York, Berlin to Auckland — and async collaboration is second nature to me by now. I'm remote-first but if it makes sense to meet your team in person for a bit, I’m happy to travel (just cover travel and stay). Same goes for international trips.",
   },
 ];
 
