@@ -1,13 +1,13 @@
 ---
-import ThemeSwitcher from './theme-switcher.astro';
-import Container from '@components/misc/container.astro';
-import Frame from '@components/misc/frame.astro';
+import ThemeSwitcher from "./theme-switcher.astro";
+import Container     from "@components/misc/container.astro";
+import Frame         from "@components/misc/frame.astro";
 
 const links = [
-	{ to: "/", label: "rabia" },
-	{ to: "/writings", label: "writings" },
-	{ to: "/resources", label: "resources" },
-	{ to: "/#testimonials", label: "testimonials" },
+  { to: "/",              label: "rabia"        },
+  { to: "/writings",      label: "writings"     },
+  { to: "/resources",     label: "resources"    },
+  { to: "/#testimonials", label: "testimonials" },
 ];
 ---
 
@@ -15,96 +15,86 @@ const links = [
   <nav class="absolute w-full lg:bg-transparent dark:lg:bg-transparent">
     <Container>
       <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4 lg:py-8">
-        
-        <!-- Logo & Mobile Controls -->
-        <div class="relative z-40 flex w-full items-center justify-between md:px-0 lg:w-max lg:flex-shrink-0">
-          <a href="/" class="z-50 relative">
-            <img src="/apple-icon.png" alt="Rabia Ahmed Logo" loading="lazy" decoding="async" class="h-14 object-cover" width="56" height="56" />
+
+        <!-- Logo + mobile controls -->
+        <div class="relative z-40 flex w-full items-center justify-between lg:w-max lg:flex-shrink-0">
+          <a href="/" class="relative z-50">
+            <img src="/apple-icon.png" alt="Rabia Ahmed logo" loading="lazy"
+                 decoding="async" class="h-14 w-14 object-cover" width="56" height="56" />
           </a>
 
-          <!-- Mobile Right Side (Theme Switcher + Hamburger) -->
-          <div class="relative flex items-center gap-2 lg:hidden z-40">
-            <div class="flex items-center">
-              <ThemeSwitcher />
-            </div>
-            <button id="menu-btn" aria-label="menu button" class="relative p-6 -mr-2">
-              <div id="line1" class="m-auto h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
-              <div id="line2" class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
+          <!-- right-hand controls (mobile only) -->
+          <div class="relative z-40 flex items-center gap-2 lg:hidden">
+            <ThemeSwitcher />
+            <button id="menu-btn" aria-label="Menu" class="p-6 -mr-2">
+              <div class="m-auto h-0.5 w-5 rounded bg-sky-900 transition dark:bg-gray-300"></div>
+              <div class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 transition dark:bg-gray-300"></div>
             </button>
           </div>
         </div>
 
-        <!-- Desktop Nav (Centered) -->
+        <!-- centred desktop nav -->
         <div class="hidden lg:flex lg:fixed lg:inset-x-0 lg:justify-center z-30">
           <Frame>
-            <div class="relative w-full text-gray-600 dark:text-gray-300">
-              <ul class="flex flex-row gap-6 tracking-wide text-sm">
-                {links.map((link) => (
-                  <li>
-                    <a
-                      href={link.to}
-                      class="px-2 py-1 hover:bg-gray-950/5 hover:text-gray-950
-                             rounded-md transition dark:hover:text-white
-                             md:px-4 dark:hover:bg-white/5"
-                    >
-                      <span>{link.label}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul class="flex gap-6 text-sm tracking-wide text-gray-600 dark:text-gray-300">
+              {links.map(({ to, label }) => (
+                <li>
+                  <a href={to}
+                     class="rounded-md px-2 py-1 md:px-4 transition
+                            hover:bg-gray-950/5 hover:text-gray-950
+                            dark:hover:bg-white/5 dark:hover:text-white">
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </Frame>
         </div>
 
-        <!-- Mobile Menu Background Overlay -->
-        <div
-          id="navLayer"
-          class="fixed inset-0 z-30 h-screen w-screen scale-y-0 origin-top 
-                 bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl transition-transform duration-500 ease-in-out lg:hidden"
-        ></div>
+        <!-- mobile overlay -->
+        <div id="navLayer"
+             class="fixed inset-0 z-30 h-screen w-screen origin-top scale-y-0
+                    bg-white/70 dark:bg-theme-sun-text backdrop-blur-2xl
+                    transition-transform duration-500 ease-in-out lg:hidden"></div>
 
-        <!-- Mobile Nav Content -->
-        <div
-          id="navlinks"
-          class="hidden z-40 mt-4 flex-wrap lg:hidden gap-6 items-center w-full
-                 bg-white dark:bg-gray-900 p-6 shadow-lg rounded-md
-                 absolute top-16 left-1/2 transform -translate-x-1/2"
-        >
-          <div class="lg:block">
-            <Frame>
-              <div class="relative w-full text-gray-600 dark:text-gray-300">
-                <ul class="flex flex-col gap-6 tracking-wide">
-                  {links.map((link) => (
-                    <li>
-                      <a
-                        href={link.to}
-                        class="px-2 py-1 hover:bg-gray-950/5 hover:text-gray-950
-                               rounded-md block transition dark:hover:text-white
-                               md:px-4 dark:hover:bg-white/5"
-                      >
-                        <span>{link.label}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Frame>
-          </div>
-          
-          <!-- Mobile CTA Button -->
-          <div class="w-full mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-            <a href="/contact" class="w-full block text-center px-4 py-2 bg-[#ffdd6d] text-black rounded-lg hover:bg-[#ebcb63] btn-primary">
+        <!-- mobile links -->
+        <div id="navlinks"
+             class="hidden absolute top-16 left-1/2 z-40 mt-4 w-full -translate-x-1/2
+                    flex-wrap items-center gap-6 rounded-md bg-white p-6 shadow-lg
+                    dark:bg-theme-sun-secondary lg:hidden">
+          <Frame>
+            <ul class="flex flex-col gap-6 tracking-wide text-gray-600 dark:text-gray-300">
+              {links.map(({ to, label }) => (
+                <li>
+                  <a href={to}
+                     class="block rounded-md px-2 py-1 md:px-4 transition
+                            hover:bg-gray-950/5 hover:text-gray-950
+                            dark:hover:bg-white/5 dark:hover:text-white">
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Frame>
+
+          <!-- CTA (mobile) -->
+          <div class="mt-4 w-full border-t border-gray-200 pt-4 dark:border-gray-700">
+            <a href="/contact"
+               class="block w-full rounded-lg bg-[#ffdd6d] px-4 py-2 text-center
+                      text-black dark:text-theme-sun-text hover:bg-[#ebcb63]">
               Book an intro call
             </a>
           </div>
         </div>
 
-        <!-- Desktop Right Side -->
-        <div class="hidden lg:flex lg:justify-end lg:flex-shrink-0 z-50 relative">
+        <!-- desktop right-side controls -->
+        <div class="relative z-50 hidden lg:flex lg:flex-shrink-0 lg:justify-end">
           <div class="mr-4">
             <ThemeSwitcher />
           </div>
-          <a href="/contact" class="px-4 py-2 bg-[#ffdd6d] text-black rounded-lg hover:bg-[#ebcb63] btn-primary">
+          <a href="/contact"
+             class="rounded-lg bg-[#ffdd6d] px-4 py-2 text-black
+                    hover:bg-[#ebcb63] btn-primary">
             Book an intro call
           </a>
         </div>
@@ -113,52 +103,28 @@ const links = [
   </nav>
 </header>
 
-<!-- JavaScript for Mobile Menu -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const menuBtn = document.getElementById("menu-btn");
+<!-- mobile-menu logic -->
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn  = document.getElementById("menu-btn");
     const navLinks = document.getElementById("navlinks");
     const navLayer = document.getElementById("navLayer");
-    const body = document.body;
+    const body     = document.body;
 
-    function toggleMenu() {
-      navLinks?.classList.toggle("hidden");
-      navLayer?.classList.toggle("scale-y-0");
+    const toggle = () => {
+      navLinks.classList.toggle("hidden");
+      navLayer.classList.toggle("scale-y-0");
+      body.classList.toggle("overflow-hidden",
+        !navLinks.classList.contains("hidden") && window.innerWidth < 1024);
+    };
 
-      const isOpen = !navLinks?.classList.contains("hidden");
-      if (isOpen && window.innerWidth < 1024) {
-        body.classList.add("overflow-hidden");
-      } else {
-        body.classList.remove("overflow-hidden");
-      }
-    }
-
-    if (menuBtn && navLinks && navLayer) {
-      menuBtn.addEventListener("click", function (event) {
-        event.stopPropagation();
-        toggleMenu();
-      });
-
-      navLayer.addEventListener("click", function () {
-        if (!navLinks.classList.contains("hidden")) {
-          toggleMenu();
-        }
-      });
-
-      const anchorLinks = navLinks.querySelectorAll("a");
-      anchorLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          if (window.innerWidth < 1024) {
-            toggleMenu();
-          }
-        });
-      });
-
-      window.addEventListener("resize", () => {
-        if (window.innerWidth >= 1024 && !navLinks.classList.contains("hidden")) {
-          toggleMenu();
-        }
-      });
-    }
+    menuBtn?.addEventListener("click", (e) => { e.stopPropagation(); toggle(); });
+    navLayer?.addEventListener("click", () => { if (!navLinks.classList.contains("hidden")) toggle(); });
+    navLinks?.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => { if (window.innerWidth < 1024) toggle(); })
+    );
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024 && !navLinks.classList.contains("hidden")) toggle();
+    });
   });
 </script>

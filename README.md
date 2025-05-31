@@ -1,4 +1,4 @@
-![ A website with the title "Rabia's internet space" and navigation links for "home", "writing", "resources", and "ships".](https://github.com/Spikeyrabia/rabiaahmed.me/assets/23400022/ff3120ee-281b-4607-995e-bc2e8f9edef6)
+![ A website with the title "Rabia's internet space" and navigation links for "home", "writing", "resources", and "ships".](/public/images/ogimage.png)
 
 # 🌐 rabia's – internet space
 hey! this is my personal corner on the web where I share my resources, ideas, and projects. feel free to explore and contact me if you have any questions or just want to chat. 

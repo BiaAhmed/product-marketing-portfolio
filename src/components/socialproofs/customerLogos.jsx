@@ -1,11 +1,5 @@
-/**********************************************************************
- * CustomerLogos.jsx
- * Single dark‑SVG list + CSS filters = theme‑aware without duplicates
- *********************************************************************/
-
 import { useEffect, useRef } from 'react';
 
-/* -------------  LOGO PATHS (only one SVG per logo) ---------------- */
 const logos = [
   '/images/companies-dark/pullflow.svg',
   '/images/companies-dark/xord.svg',
@@ -60,6 +54,9 @@ export default function CustomerLogos() {
   return (
     <section className="overflow-hidden mt-4 py-6">
       <div className="max-w-7xl mx-auto">
+        <h4 className="text-sm font-medium sm:text-sm text-center mb-8 uppercase">
+        Work on early-stage AI infra, devtools & products.
+        </h4>
         <div className="h-10">
           {/* Clone inside creates seamless loop */}
           <InfiniteScroll className="animate-scroll-left" />
