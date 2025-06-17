@@ -1,10 +1,10 @@
 services:
-  rabia-portfolio:
-    image: rabia-portfolio:1.0.0
+  portfolio:
+    image: portfolio:1.0.0
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: rabia-portfolio
+    container_name: portfolio
     environment:
       - PORT=4321
       - HOST=0.0.0.0
