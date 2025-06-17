@@ -10,6 +10,7 @@ import Testimonials from '@components/socialproofs/testimonials';
 import Cta from '@components/cta/home-cta.astro';
 import Showcase from '@components/socialproofs/showcase.astro';
 import Cases from '@components/socialproofs/cases.astro';
+import Dock from '@components/misc/Dock';
 ---
 
 <!doctype html>
@@ -29,10 +30,11 @@ import Cases from '@components/socialproofs/cases.astro';
 			<Cases />
 			<Stack/>
 			<Faq client:visible/>
-			<Testimonials client:visible/>
-			<Cta/>
-			</div>
-		</div>
+                        <Testimonials client:visible/>
+                        <Cta/>
+                        <Dock client:visible />
+                        </div>
+                </div>
 	
 	</Layout>
 </html>
