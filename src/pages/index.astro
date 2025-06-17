@@ -6,7 +6,7 @@ import { BaseHead } from "@components/seo";
 import Cases from "@components/socialproofs/cases.astro";
 import Showcase from "@components/socialproofs/showcase.astro";
 import Stack from "@components/socialproofs/stack.astro";
-import Testimonials from "@components/socialproofs/testimonials";
+import TestimonialsMarquee from "@components/socialproofs/testimonials-marquee";
 import { SITE_TITLE } from "@data/index";
 import { SITE_DESCRIPTION } from "@data/index";
 import Layout from "../layouts/layout.astro";
@@ -29,8 +29,8 @@ import Layout from "../layouts/layout.astro";
 			<Cases />
 			<Stack/>
 			<Faq client:visible/>
-			<Testimonials client:visible/>
-			<Cta/>
+                        <TestimonialsMarquee client:visible/>
+                        <Cta/>
 			</div>
 		</div>
 	
