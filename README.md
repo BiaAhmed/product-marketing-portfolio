@@ -1,10 +1,10 @@
 ![ A website with the title "Rabia's internet space"](/public/images/ogimage.png)
 
-# Product Marketing Portfolio Template (Built with Astro + Tailwind)
+# Product Marketing Portfolio
 
 **Live site → [rabiaahmed.me](https://rabiaahmed.me/)**
 
-A portfolio theme for marketers who don’t just write copy—they own funnels, ship GTM plays, and talk API without blinking. I built this template to show—not tell—how product marketers like me help early-stage products find traction and turn MVPs into revenue.
+a “show-don’t-tell” space where I break down how I take dev heavy, AI-powered products from MVP to must-have.
 
 ---
 
@@ -78,42 +78,92 @@ This keeps your build clean and avoids leaking analytics traffic if someone clon
 
 ---
 
-## Design Principles
+## ✨ What you’ll find
 
-The design follows minimal, functional aesthetics. Think: plenty of whitespace, strong contrast, no distractions. I’ve kept it monochrome with a single accent colour—clean enough for hiring managers, personal enough to reflect my style.
+| Area | TL;DR |
+| --- | --- |
+| Case-study engine | Each project page mixes narrative, metrics, and pull-quotes to prove impact (not just *describe* it) |
+| Terminal-style hero | A playful boot-screen sequence that sets the techy tone right away |
+| Dark-mode toggle | Because retina-searing white at 2 a.m. is rude |
+| MDX-powered writing | Long-form posts with code blocks, call-outs, and embeds |
+| Lighthouse-friendly | 90 %+ scores across Perf / A11y / SEO out of the box |
+| Ready for PostHog | Drop one key in `.env` and user analytics light up |
+
+---
+
+## 🧰 Tech stack
+
+| Layer | What & Why |
+| --- | --- |
+| **Framework** | [Astro](https://astro.build/) – partial hydration = fast-as-heck pages |
+| **Styling** | Tailwind CSS + a sprinkle of custom CSS vars |
+| **Type safety** | TypeScript everywhere |
+| **Icons** | [Lucide](https://lucide.dev/) for feather-weight SVGs |
+| **Lint / Format** | Biome (pre-configured) |
+| **Container** | Multi-stage **Dockerfile** (build → tiny Nginx-alpine serve) |
+| **Infra** | DigitalOcean droplet (+ optional Cloudflare DNS) |
+| **CI** | GitHub Actions workflow for test → build → push → |
 
 ---
 
-## Analytics Flexibility
+## 🖌️ Design notes
 
-If you prefer other analytics tools, the theme has placeholders for:
-
-- **Umami**
-- **Microsoft Clarity**
-
-Add the following environment variables in your `.env` if you’re using them:
-
-```
-ini
-CopyEdit
-# Umami
-UMAMI_WEBSITE_ID=your_umami_website_id
-UMAMI_TRACKING_URL=your_umami_tracking_url
-
-# Microsoft Clarity
-CLARITY_TRACKING_ID=your_clarity_tracking_id
-
-```
-
-You can safely remove or swap these with your preferred analytics setup—scripts live in `src/components/seo/base-head.astro`.
+Minimal, monochrome, and developer-first. White-space is a feature, not an accident. Accent colour only appears where your eye should linger. Typography leans on `Inter` for body text and `JetBrains Mono` for anything “code-y”.
 
 ---
+
+## 🔧 Local development
+
+```bash
+# 1. Clone & install
+git clone <https://github.com/BiaAhmed/product-marketing-portfolio.git>
+cd product-marketing-portfolio
+npm install
+
+# 2. Spin up dev server
+npm run dev
+
+```
+
+---
+
+## 🐳 Docker workflow (prod-ish)
+
+```jsx
+# Build the image
+docker build -t rabia/portfolio .
+
+# Run the container
+docker run -d \
+  -p 80:80 \
+  --env PUBLIC_POSTHOG_KEY=xyz123 \
+  rabia/portfolio
+```
+
+On my DigitalOcean droplet I simply `docker compose up -d`. The compose file exposes port 80 and lets you bolt on Caddy or Traefik SSL if you fancy.
+
+## 🔑 Environment variables
+
+| Key | What it does |
+| --- | --- |
+| `PUBLIC_POSTHOG_KEY` | Optional. Drop your PostHog project key in here to get analytics. |
+| `PUBLIC_SITE_URL` | Used for canonical URLs in meta tags. |
+
+Create a `.env` in the project root and **never** commit it.
 
 ## Contributing
 
-Open to suggestions, contributions, and forks. This template is built with the dev-marketer in mind, so if you have ideas for better GTM visuals, portfolio components, or new layout patterns—feel free to open a PR or start a discussion.
+PRs welcome—especially on:
 
-For detailed guidelines, see the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+- Accessibility / a11y audits
+- Better lighthouse scores
+- New content plug-ins (MDX shortcodes, CMS adapters)
+- Polish on motion / micro-copy
+1. **Fork** the repo
+2. `git checkout -b feat/your-idea`
+3. Push & open a **PR** – keep commits atomic and write clear messages.
+
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) + [CONTRIBUTING.md](CONTRIBUTING.md) for the boring bits. Good first issues: accessibility tweaks, animation polish, Netlify adapter.
 
 
 ---
@@ -132,6 +182,4 @@ If you’re using this template or want to talk marketing, tooling, or growth:
 
 ## License
 
-Apache License 2.0
-
-You can use, adapt, and share freely. Attribution appreciated, but not required.
+Apache-2.0 – do what you like, just keep the attribution.

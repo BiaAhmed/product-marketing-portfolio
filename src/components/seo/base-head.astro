@@ -99,7 +99,7 @@ const { title, description, image = "/images/ogimage.png" } = Astro.props;
     u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify alias people.set".split(" "),
     n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}
     (document,window.posthog||[]);
-    posthog.init('phc_wO6Bjo5R2PNpRtGQ1igMfFutJtPUAahHTmyYUt8jjea', {
+    posthog.init('${POSTHOG_KEY}', {
       api_host: 'https://us.i.posthog.com',
       person_profiles: 'identified_only'
     });

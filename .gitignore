@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # IDE specific files
 .vscode/
+
+# package lock files
+package-lock.json
