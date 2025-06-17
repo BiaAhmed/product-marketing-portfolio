@@ -114,6 +114,9 @@ You can safely remove or swap these with your preferred analytics setup—script
 
 Open to suggestions, contributions, and forks. This template is built with the dev-marketer in mind, so if you have ideas for better GTM visuals, portfolio components, or new layout patterns—feel free to open a PR or start a discussion.
 
+For detailed guidelines, see the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
+
 ---
 
 ## Contact
