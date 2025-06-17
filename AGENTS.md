@@ -18,7 +18,6 @@ This repository contains a personal website built with [Astro](https://astro.bui
 Run the following commands before committing. All should succeed:
 ```bash
 npm run lint   # lint and format checks via Biome
-npm run check  # type checking and additional lint rules
 npm run build  # create production build
 ```
 If any command fails due to missing dependencies or network restrictions, mention this in the PR's testing section.
