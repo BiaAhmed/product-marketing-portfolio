@@ -1,14 +1,14 @@
 ---
-import { ResourcesItem } from '@components/cards';
-import { BaseHead } from '@components/seo';
-import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
-import { getCollection } from 'astro:content';
-import Layout from '@layouts/layout.astro';
+import { getCollection } from "astro:content";
+import { ResourcesItem } from "@components/cards";
+import { BaseHead } from "@components/seo";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
+import Layout from "@layouts/layout.astro";
 
 const PAGE_SIZE = 6;
 
-const allResources = (await getCollection('resource')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const allResources = (await getCollection("resource")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
