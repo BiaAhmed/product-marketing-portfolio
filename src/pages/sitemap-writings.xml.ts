@@ -1,5 +1,5 @@
-import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
+import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
 	const posts = await getCollection("writing");
@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
 				.map(
 					(post) => `
         <url>
-          <loc>${new URL("/writings/" + post.slug, import.meta.env.SITE).href}</loc>
+          <loc>${new URL(`/writings/${post.slug}`, import.meta.env.SITE).href}</loc>
           <lastmod>${post.data.pubDate.toISOString()}</lastmod>
         <changefreq>daily</changefreq>
           <priority>1.0</priority>

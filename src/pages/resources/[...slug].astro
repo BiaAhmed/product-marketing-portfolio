@@ -1,16 +1,16 @@
 ---
-import ResourcesLayout from '@layouts/resources-layout.astro';
-import { type CollectionEntry, getCollection } from 'astro:content';
-import { ScrollProgress } from '@components/misc';
-import { getReadingTime } from '@utils/index';
+import { type CollectionEntry, getCollection } from "astro:content";
+import { ScrollProgress } from "@components/misc";
+import ResourcesLayout from "@layouts/resources-layout.astro";
+import { getReadingTime } from "@utils/index";
 
-const posts = await getCollection('resource');
-type Props = CollectionEntry<'resource'>;
+const posts = await getCollection("resource");
+type Props = CollectionEntry<"resource">;
 
 const { slug } = Astro.params;
 const post = posts.find((page) => page.slug === slug);
 
-if (!post) return Astro.redirect('/404');
+if (!post) return Astro.redirect("/404");
 
 const readingTime = getReadingTime(post.body);
 const { Content } = await post.render();

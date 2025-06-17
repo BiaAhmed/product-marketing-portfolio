@@ -1,11 +1,11 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import FormattedDate from '@components/misc/formatted-date.astro';
-import { BaseHead } from '@components/seo';
-import Layout from '@layouts/layout.astro';
-import { clsx } from '@utils/index';
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@components/misc/formatted-date.astro";
+import { BaseHead } from "@components/seo";
+import Layout from "@layouts/layout.astro";
+import { clsx } from "@utils/index";
 
-type Props = CollectionEntry<'resource'>['data'];
+type Props = CollectionEntry<"resource">["data"];
 
 const { title, description, showTldr, pubDate, readingTime } = Astro.props;
 ---

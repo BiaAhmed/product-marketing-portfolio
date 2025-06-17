@@ -1,14 +1,14 @@
 ---
-import 'src/styles/global.css';
+import "src/styles/global.css";
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
+	title: string;
+	description: string;
+	image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image = '/images/ogimage.png' } = Astro.props;
+const { title, description, image = "/images/ogimage.png" } = Astro.props;
 ---
 
 <!-- Critical inline theme script -->
@@ -28,7 +28,7 @@ const { title, description, image = '/images/ogimage.png' } = Astro.props;
   rel="preload"
   href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Jost:wght@300;400;500;600;700&display=swap"
   as="style"
-  onload="this.onload=null;this.rel='stylesheet'"
+  onload="this.setAttribute('rel','stylesheet')"
 />
 <noscript>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Jost:wght@300;400;500;600;700&display=swap" />

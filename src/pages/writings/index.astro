@@ -1,13 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
-import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
-import { BaseHead } from '@components/seo';
-import Layout from '@layouts/layout.astro';
-import FormattedDate from '@components/misc/formatted-date.astro';
+import { getCollection } from "astro:content";
+import FormattedDate from "@components/misc/formatted-date.astro";
+import { BaseHead } from "@components/seo";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
+import Layout from "@layouts/layout.astro";
 
 const PAGE_SIZE = 5;
-const allWritings = (await getCollection('writing')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const allWritings = (await getCollection("writing")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
