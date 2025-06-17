@@ -1,12 +1,12 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
 // import { Header } from '@components/misc';
-import FormattedDate from '@components/misc/formatted-date.astro';
-import { BaseHead } from '@components/seo';
-import Layout from '@layouts/layout.astro';
-import { clsx } from '@utils/index';
+import FormattedDate from "@components/misc/formatted-date.astro";
+import { BaseHead } from "@components/seo";
+import Layout from "@layouts/layout.astro";
+import { clsx } from "@utils/index";
 
-type Props = CollectionEntry<'writing'>['data'];
+type Props = CollectionEntry<"writing">["data"];
 
 const { title, description, pubDate, heroImage, readingTime } = Astro.props;
 ---
