@@ -41,8 +41,7 @@ This site is deployed on a DigitalOcean droplet using Docker. The `Dockerfile` b
 If you're using this template and want to self-host:
 
 1. Clone the repo
-2. Run `docker build -t my-portfolio .`
-3. Use `docker run -d -p 80:80 my-portfolio` or add a reverse proxy setup of your choice
+2. Run `docker compose up -d`
 
 ---
 
