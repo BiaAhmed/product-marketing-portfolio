@@ -38,7 +38,7 @@ To self-host:
 1. Clone the repo
 2. Run `docker compose up -d`
 
-## Analytics (Opt-in)
+## Analytics (opt-in)
 
 PostHog is wired in but disabled by default.
 
@@ -66,8 +66,6 @@ No analytics load unless you add your own key—so cloned builds stay clean.
 | MDX-powered writing | With code blocks, embeds, and call-outs |
 | Lighthouse-friendly | 90%+ scores across Perf / A11y / SEO |
 | PostHog-ready | Drop a key in `.env` and it just works |
-
----
 
 ## Design notes
 
@@ -108,8 +106,6 @@ On DigitalOcean, I just run: `docker compose up -d`.
 
 The Compose file exposes port 80. You can bolt on Caddy/Traefik for SSL.
 
----
-
 ## Environment variables
 
 | Key | Purpose |
@@ -119,9 +115,7 @@ The Compose file exposes port 80. You can bolt on Caddy/Traefik for SSL.
 
 Create a `.env` at the root—**never commit it**.
 
----
-
-## Contributing
+## Contributions
 
 PRs welcome—especially for:
 
@@ -140,8 +134,6 @@ See [CODE_OF_CONDUCT.md](https://chatgpt.com/c/CODE_OF_CONDUCT.md) + [CONTRIBUTI
 
 Good first issues: a11y, motion polish, Netlify adapter.
 
----
-
 ## Contact
 
 Lettuce jam on marketing, growth, or tooling?
@@ -152,10 +144,7 @@ Lettuce jam on marketing, growth, or tooling?
 
 🌐 [rabiaahmed.me](https://rabiaahmed.me/)
 
----
 
 ## License
 
 Apache-2.0 – do what you like, just keep the attribution.
-
----
