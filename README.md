@@ -29,15 +29,6 @@ It blends case-study storytelling, clean design, and growth analytics plumbing, 
 - **Docker + Nginx-alpine** – one-liner deploys to any VPS (I use DigitalOcean).
 - **GitHub Actions** – CI/CD that builds and pushes on commit.
 
-## Hosting & deployment
-
-Deployed on a DigitalOcean droplet using Docker. The `Dockerfile` builds an Nginx image from the Astro output. GitHub Actions handles deployment.
-
-To self-host:
-
-1. Clone the repo
-2. Run `docker compose up -d`
-
 ## Analytics (opt-in)
 
 PostHog is wired in but disabled by default.
