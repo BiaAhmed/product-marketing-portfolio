@@ -1,6 +1,6 @@
 services:
   portfolio:
-    image: portfolio:1.0.0
+    image: rabia-portfolio:1.0.0
     build:
       context: .
       dockerfile: Dockerfile
