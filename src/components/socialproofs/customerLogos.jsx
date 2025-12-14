@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 
 const logos = [
 	"/images/companies-dark/pullflow.svg",
+	"/images/companies-dark/coperniq.svg",
 	"/images/companies-dark/xord.svg",
 	"/images/companies-dark/patchcrafts.svg",
 	"/images/companies-dark/lucidbee.svg",
@@ -61,7 +62,7 @@ export default function CustomerLogos() {
 		<section className="overflow-hidden mt-4 py-6">
 			<div className="max-w-7xl mx-auto">
 				<h4 className="text-sm font-medium sm:text-sm text-center mb-8 uppercase">
-					Work on early-stage AI infra, devtools & products.
+					I work with the best companies.
 				</h4>
 				<div className="h-10">
 					{/* Clone inside creates seamless loop */}
