@@ -15,6 +15,7 @@ import Layout from "../layouts/layout.astro";
 const caseStudies = (await getCollection("cases")).sort(
         (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const featuredCaseStudies = caseStudies.slice(0, 4);
 ---
 
 <!doctype html>
@@ -31,7 +32,11 @@ const caseStudies = (await getCollection("cases")).sort(
 		<div>
 			<Hero/>
 			<Showcase/>
-                        <Cases caseStudies={caseStudies} />
+                        <Cases
+                                caseStudies={featuredCaseStudies}
+                                seeMoreHref="/cases"
+                                seeMoreLabel="See more proof of work"
+                        />
 			<Stack/>
 			<Faq client:visible/>
                         <TestimonialsMarquee client:visible/>

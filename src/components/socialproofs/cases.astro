@@ -4,10 +4,14 @@ import { painPointCategories } from "@components/socialproofs/cases-content";
 
 interface Props {
         caseStudies: CollectionEntry<"cases">[];
+        seeMoreHref?: string;
+        seeMoreLabel?: string;
 }
 
 const props = Astro.props as Partial<Props> | undefined;
 const caseStudies = props?.caseStudies ?? [];
+const seeMoreHref = props?.seeMoreHref;
+const seeMoreLabel = props?.seeMoreLabel ?? "See more proof of work";
 ---
 
 <section id="cases" class=" dark:from-theme-moon-bg dark:to-theme-moon-bgAccent py-24">
@@ -211,6 +215,17 @@ const caseStudies = props?.caseStudies ?? [];
         ))
       }
     </div>
+
+    {seeMoreHref && (
+      <div class="mt-12 text-center">
+        <a href={seeMoreHref} class="btn-secondary inline-flex items-center gap-2">
+          {seeMoreLabel}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L21 10.5m0 0l-3.75 3.75M21 10.5h-14.25" />
+          </svg>
+        </a>
+      </div>
+    )}
   </div>
 
   <!-- Call to action -->
