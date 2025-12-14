@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import Cta from "@components/cta/home-cta.astro";
 import Faq from "@components/misc/faq";
 import Hero from "@components/misc/hero.astro";
@@ -10,6 +11,10 @@ import TestimonialsMarquee from "@components/socialproofs/testimonials-marquee";
 import { SITE_TITLE } from "@data/index";
 import { SITE_DESCRIPTION } from "@data/index";
 import Layout from "../layouts/layout.astro";
+
+const caseStudies = (await getCollection("cases")).sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
 <!doctype html>
@@ -26,7 +31,7 @@ import Layout from "../layouts/layout.astro";
 		<div>
 			<Hero/>
 			<Showcase/>
-			<Cases />
+                        <Cases caseStudies={caseStudies} />
 			<Stack/>
 			<Faq client:visible/>
                         <TestimonialsMarquee client:visible/>

@@ -1,8 +1,12 @@
 ---
-import {
-	caseStudies,
-	painPointCategories,
-} from "@components/socialproofs/cases-content";
+import type { CollectionEntry } from "astro:content";
+import { painPointCategories } from "@components/socialproofs/cases-content";
+
+interface Props {
+        caseStudies: CollectionEntry<"cases">[];
+}
+
+const { caseStudies } = Astro.props as Props;
 ---
 
 <section id="cases" class=" dark:from-theme-moon-bg dark:to-theme-moon-bgAccent py-24">
@@ -42,17 +46,17 @@ import {
             <!-- Card header with company info -->
             <div class="relative pt-6 pl-2 pr-6 border-b border-theme-sun-border/10 dark:border-theme-moon-border/10 flex items-center justify-between">
               <div class="flex items-center gap-4">
-                <img src={study.logo} alt={study.alt} loading="lazy" decoding="async" class="w-17 theme-logo" />
+                <img src={study.data.logo} alt={study.data.logoAlt} loading="lazy" decoding="async" class="w-17 theme-logo" />
               </div>
               
               <!-- Pain point category badge -->
               <span class="text-center p-2  bg-theme-sun-accent/10 dark:bg-theme-moon-accent/20 text-theme-sun-accent dark:text-theme-moon-accent rounded-full text-xs font-medium">
-                {painPointCategories.find(c => c.id === study.painPointCategory)?.label}
+                {painPointCategories.find(c => c.id === study.data.painPointCategory)?.label}
               </span>
             </div>
             <div>
                   <h4 class="pl-6 px-3 py-1  text-lg font-bold text-theme-sun-textMuted dark:text-theme-moon-text group-hover:text-theme-sun-accent dark:group-hover:text-theme-moon-accent transition-colors">
-                    {study.title}
+                    {study.data.title}
                   </h4>
                 </div>
 
@@ -61,7 +65,7 @@ import {
               <!-- Tags -->
               <div class="flex flex-wrap gap-2 mb-6">
                 {
-                  study.tags.map((tag) => (
+                  study.data.tags.map((tag) => (
                     <span class="bg-theme-sun-bgAccent/50 dark:bg-theme-moon-bg/70 px-2.5 py-1 rounded-md text-xs text-theme-sun-secondary dark:text-theme-moon-secondary font-medium">{tag}</span>
                   ))
                 }
@@ -78,7 +82,7 @@ import {
                   </div>
                   <div>
                     <h4 class="text-sm font-semibold text-theme-sun-text dark:text-theme-moon-text mb-1">Challenge</h4>
-                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.challenge}</p>
+                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.data.challenge}</p>
                   </div>
                 </div>
 
@@ -91,7 +95,7 @@ import {
                   </div>
                   <div>
                     <h4 class="text-sm font-semibold text-theme-sun-text dark:text-theme-moon-text mb-1">Approach</h4>
-                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.approach}</p>
+                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.data.approach}</p>
                   </div>
                 </div>
 
@@ -104,7 +108,7 @@ import {
                   </div>
                   <div>
                     <h4 class="text-sm font-semibold text-theme-sun-text dark:text-theme-moon-text mb-1">Action</h4>
-                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.action}</p>
+                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.data.action}</p>
                   </div>
                 </div>
 
@@ -117,7 +121,7 @@ import {
                   </div>
                   <div>
                     <h4 class="text-sm font-semibold text-theme-sun-text dark:text-theme-moon-text mb-1">Results</h4>
-                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.results}</p>
+                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.data.results}</p>
                   </div>
                 </div>
 
@@ -130,7 +134,7 @@ import {
                   </div>
                   <div>
                     <h4 class="text-sm font-semibold text-theme-sun-text dark:text-theme-moon-text mb-1">Key Learning</h4>
-                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.learning}</p>
+                    <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.data.learning}</p>
                   </div>
                 </div>
               </div>
@@ -143,7 +147,7 @@ import {
                 </div>
                 <div class="grid grid-cols-3 gap-3 text-center">
                   {
-                    Object.entries(study.snapshot).map(([label, value]) => (
+                    study.data.snapshot.map(({ label, value }) => (
                       <div class="bg-theme-sun-bgAccent/50 dark:bg-theme-moon-bg/70 px-3 py-2 rounded-lg flex flex-col items-center">
                         <div class="text-lg font-bold text-theme-sun-accent dark:text-theme-moon-accent">{value}</div>
                         <div class="text-[10px] uppercase tracking-wider text-theme-sun-textMuted dark:text-theme-moon-textMuted mt-1">{label}</div>
@@ -158,9 +162,9 @@ import {
                 <div class="flex items-start gap-3">
                   <div class="text-theme-sun-accent dark:text-theme-moon-accent text-3xl leading-none">"</div>
                   <div>
-                    <p class="text-sm italic text-theme-sun-text dark:text-theme-moon-text mb-2">{study.testimonial.quote}</p>
+                    <p class="text-sm italic text-theme-sun-text dark:text-theme-moon-text mb-2">{study.data.testimonial.quote}</p>
                     <div class="text-xs font-medium text-theme-sun-secondary dark:text-theme-moon-secondary">
-                      {study.testimonial.author}, <span class="text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.testimonial.role}</span>
+                      {study.data.testimonial.author}, <span class="text-theme-sun-textMuted dark:text-theme-moon-textMuted">{study.data.testimonial.role}</span>
                     </div>
                   </div>
                 </div>
@@ -182,7 +186,7 @@ import {
                   </summary>
                   <div class="mt-4 pl-6 text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">
                     <ul class="list-disc space-y-2">
-                      {study.howDetails.map((detail) => (
+                      {study.data.howDetails.map((detail) => (
                         <li>{detail}</li>
                       ))}
                     </ul>
@@ -193,7 +197,7 @@ import {
 
             <!-- Card footer -->
             <div class="px-6 py-4 bg-theme-sun-bgAccent/30 dark:bg-theme-moon-bg/50 border-t border-theme-sun-border/10 dark:border-theme-moon-border/10">
-              <a href={study.ctaLink} class="flex items-center justify-between w-full text-sm font-medium">
+              <a href={`/cases/${study.slug}/`} class="flex items-center justify-between w-full text-sm font-medium">
                 <span class="text-theme-sun-text dark:text-theme-moon-text">View full case study</span>
                 <span class="flex items-center justify-center w-8 h-8 bg-theme-sun-accent/10 dark:bg-theme-moon-accent/20 rounded-full text-theme-sun-accent dark:text-theme-moon-accent group-hover:bg-theme-sun-accent dark:group-hover:bg-theme-moon-accent group-hover:text-white transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
