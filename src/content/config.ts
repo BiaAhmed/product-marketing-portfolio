@@ -56,14 +56,54 @@ const ship = defineCollection({
 
 /* ───────────────────────────────────────── contact ──────────────────────────────────────── */
 const contact = defineCollection({
-	type: "content", // markdown/MDX front‑matter for the contact page
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		meta_title: z.string().optional(),
-		image: z.string().optional(),
-	}),
+        type: "content", // markdown/MDX front‑matter for the contact page
+        schema: z.object({
+                title: z.string(),
+                description: z.string(),
+                meta_title: z.string().optional(),
+                image: z.string().optional(),
+        }),
+});
+
+/* ───────────────────────────────────────── cases ─────────────────────────────────────────── */
+const cases = defineCollection({
+        type: "content",
+        schema: z.object({
+                title: z.string(),
+                company: z.string(),
+                description: z.string(),
+                logo: z.string(),
+                logoAlt: z.string(),
+                painPointCategory: z.enum([
+                        "adoption",
+                        "discoverability",
+                        "documentation",
+                        "conversion",
+                ]),
+                tags: z.array(z.string()),
+                snapshot: z.array(
+                        z.object({
+                                label: z.string(),
+                                value: z.string(),
+                        }),
+                ),
+                challenge: z.string(),
+                approach: z.string(),
+                action: z.string(),
+                results: z.string(),
+                learning: z.string(),
+                testimonial: z.object({
+                        quote: z.string(),
+                        author: z.string(),
+                        role: z.string(),
+                }),
+                howDetails: z.array(z.string()),
+                ctaLink: z.string().url().optional(),
+                pubDate: z.coerce.date(),
+                updatedDate: z.coerce.date().optional(),
+                heroImage: z.string().optional(),
+        }),
 });
 
 /* ───────────────────────────────────────── export ───────────────────────────────────────── */
-export const collections = { whoami, writing, resource, ship, contact };
+export const collections = { whoami, writing, resource, ship, contact, cases };

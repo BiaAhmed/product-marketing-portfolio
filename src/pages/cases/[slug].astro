@@ -1,0 +1,166 @@
+---
+import { getCollection } from "astro:content";
+import { BaseHead } from "@components/seo";
+import Layout from "@layouts/layout.astro";
+import { painPointCategories } from "@components/socialproofs/cases-content";
+
+const posts = await getCollection("cases");
+
+const slug = Astro.params.slug;
+const post = posts.find((page) => page.slug === slug);
+
+if (!post) return Astro.redirect("/404");
+
+const { Content } = await post.render();
+
+const painPointLabel = painPointCategories.find(
+        (category) => category.id === post.data.painPointCategory,
+)?.label;
+---
+
+<head>
+    <BaseHead
+        title={`${post.data.title} – Case Study`}
+        description={post.data.description}
+        image={post.data.heroImage ?? "/images/ogimage.png"}
+    />
+</head>
+
+<Layout>
+    <section class="relative min-h-screen pt-32 sm:pt-40 pb-24 overflow-hidden">
+        <div
+            aria-hidden
+            class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[1000px] h-[800px]
+                opacity-0 dark:opacity-35
+                [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)]"
+        >
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div class="flex items-center justify-between gap-4">
+                <a href="/cases" class="inline-flex items-center gap-2 text-sm text-theme-sun-secondary dark:text-theme-moon-secondary hover:text-theme-sun-accent dark:hover:text-theme-moon-accent">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to all cases
+                </a>
+                {painPointLabel && (
+                    <span class="px-3 py-1 text-xs rounded-full bg-theme-sun-accent/10 dark:bg-theme-moon-accent/20 text-theme-sun-accent dark:text-theme-moon-accent font-semibold">
+                        {painPointLabel}
+                    </span>
+                )}
+            </div>
+
+            <header class="space-y-4 text-left">
+                <div class="flex items-center gap-4">
+                    <div
+                        class="flex items-center justify-center w-16 h-16 rounded-xl bg-theme-sun-bgAccent dark:bg-theme-moon-bg border border-theme-sun-border/20 dark:border-theme-moon-border/20 shadow-sm"
+                    >
+                        <img
+                            src={post.data.logo}
+                            alt={post.data.logoAlt}
+                            class="max-w-[52px] max-h-[52px] object-contain"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
+                    <div>
+                        <p class="text-sm uppercase tracking-wide text-theme-sun-secondary dark:text-theme-moon-secondary">{post.data.company}</p>
+                        <h1 class="text-4xl sm:text-5xl font-semibold text-theme-sun-text dark:text-theme-moon-text">
+                            {post.data.title}
+                        </h1>
+                    </div>
+                </div>
+                <p class="text-lg text-theme-sun-textMuted dark:text-theme-moon-textMuted max-w-3xl">{post.data.description}</p>
+                <div class="flex flex-wrap gap-2">
+                    {post.data.tags.map((tag) => (
+                        <span class="bg-theme-sun-bgAccent/50 dark:bg-theme-moon-bg/70 px-3 py-1 rounded-full text-xs text-theme-sun-secondary dark:text-theme-moon-secondary font-medium">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {post.data.snapshot.map(({ label, value }) => (
+                    <div class="rounded-xl border border-theme-sun-border/20 dark:border-theme-moon-border/20 bg-white dark:bg-theme-moon-bgAccent px-4 py-3 text-center">
+                        <div class="text-xl font-bold text-theme-sun-accent dark:text-theme-moon-accent">{value}</div>
+                        <div class="text-[11px] uppercase tracking-[0.08em] text-theme-sun-textMuted dark:text-theme-moon-textMuted mt-1">{label}</div>
+                    </div>
+                ))}
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <h2 class="text-lg font-semibold text-theme-sun-text dark:text-theme-moon-text">What we tackled</h2>
+                    <div class="space-y-3">
+                        <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
+                            <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Challenge</h3>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.challenge}</p>
+                        </div>
+                        <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
+                            <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Approach</h3>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.approach}</p>
+                        </div>
+                        <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
+                            <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Action</h3>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.action}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h2 class="text-lg font-semibold text-theme-sun-text dark:text-theme-moon-text">Impact</h2>
+                    <div class="space-y-3">
+                        <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
+                            <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Results</h3>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.results}</p>
+                        </div>
+                        <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
+                            <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Key learning</h3>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.learning}</p>
+                        </div>
+                        <div class="rounded-xl bg-theme-sun-bgAccent/40 dark:bg-theme-moon-bg/40 border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
+                            <div class="flex gap-3">
+                                <div class="text-theme-sun-accent dark:text-theme-moon-accent text-3xl leading-none">"</div>
+                                <div>
+                                    <p class="text-sm italic text-theme-sun-text dark:text-theme-moon-text mb-2">{post.data.testimonial.quote}</p>
+                                    <div class="text-xs font-medium text-theme-sun-secondary dark:text-theme-moon-secondary">
+                                        {post.data.testimonial.author}, <span class="text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.testimonial.role}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-2xl border border-theme-sun-border/10 dark:border-theme-moon-border/10 bg-white dark:bg-theme-moon-bgAccent p-6">
+                <h2 class="text-lg font-semibold text-theme-sun-text dark:text-theme-moon-text mb-3">How I did it</h2>
+                <ul class="list-disc pl-5 space-y-2 text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">
+                    {post.data.howDetails.map((detail) => (
+                        <li>{detail}</li>
+                    ))}
+                </ul>
+            </div>
+
+            <article class="prose prose-neutral dark:prose-invert max-w-none bg-white/60 dark:bg-theme-moon-bg/60 p-6 rounded-2xl border border-theme-sun-border/10 dark:border-theme-moon-border/10">
+                <Content />
+            </article>
+
+            {post.data.ctaLink && (
+                <div class="flex justify-start">
+                    <a
+                        href={post.data.ctaLink}
+                        class="btn-primary inline-flex items-center gap-2"
+                    >
+                        Visit project
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
+                    </a>
+                </div>
+            )}
+        </div>
+    </section>
+</Layout>
