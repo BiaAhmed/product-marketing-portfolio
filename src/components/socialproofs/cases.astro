@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Logos from "@components/socialproofs/customerLogos";
 import { painPointCategories } from "@components/socialproofs/cases-content";
 
 interface Props {
@@ -212,6 +213,10 @@ const caseStudies = props?.caseStudies ?? [];
       }
     </div>
   </div>
+      <!-- logos -->
+    <div class="relative z-10 mt-20">
+      <Logos client:load />
+    </div>
 
   <!-- Call to action -->
   <div class="mt-16 text-center">

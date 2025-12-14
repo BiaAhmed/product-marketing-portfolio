@@ -2,7 +2,7 @@
 title: "Repositioning & demo funnel for a contractor SaaS platform"
 company: "Coperniq"
 description: "Tightened positioning and rebuilt the demo funnel so non-solar contractors converted and sales got clearer signal."
-logo: "/images/companies-light/coperniq.svg"
+logo: "/images/companies-dark/coperniq.svg"
 logoAlt: "Coperniq logo"
 painPointCategory: "conversion"
 tags:
