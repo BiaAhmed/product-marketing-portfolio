@@ -53,17 +53,7 @@ const painPointLabel = painPointCategories.find(
 
             <header class="space-y-4 text-left">
                 <div class="flex items-center gap-4">
-                    <div
-                        class="flex items-center justify-center w-16 h-16 rounded-xl bg-theme-sun-bgAccent dark:bg-theme-moon-bg border border-theme-sun-border/20 dark:border-theme-moon-border/20 shadow-sm"
-                    >
-                        <img
-                            src={post.data.logo}
-                            alt={post.data.logoAlt}
-                            class="max-w-[52px] max-h-[52px] object-contain"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                    </div>
+                    <img src={post.data.logo} alt={post.data.logoAlt} class="w-16 h-16 object-contain" loading="lazy" decoding="async" />
                     <div>
                         <p class="text-sm uppercase tracking-wide text-theme-sun-secondary dark:text-theme-moon-secondary">{post.data.company}</p>
                         <h1 class="text-4xl sm:text-5xl font-semibold text-theme-sun-text dark:text-theme-moon-text">
