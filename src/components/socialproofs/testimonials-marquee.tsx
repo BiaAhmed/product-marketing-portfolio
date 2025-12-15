@@ -69,12 +69,13 @@ function ReviewCard({
 					</p>
 				</div>
 			</div>
-			<blockquote
-				className="mt-2 text-sm text-theme-sun-text dark:text-theme-moon-text"
-				dangerouslySetInnerHTML={{ __html: text }}
-			/>
-		</figure>
-	);
+                        <blockquote
+                                className="mt-2 text-sm text-theme-sun-text dark:text-theme-moon-text"
+                                // biome-ignore lint/security/noDangerouslySetInnerHtml: testimonials include trusted emphasis markup
+                                dangerouslySetInnerHTML={{ __html: text }}
+                        />
+                </figure>
+        );
 }
 
 export default function TestimonialsMarquee() {
