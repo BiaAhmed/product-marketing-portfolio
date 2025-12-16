@@ -62,7 +62,7 @@ export default function CustomerLogos() {
 		<section className="overflow-hidden mt-4 py-6">
 			<div className="max-w-7xl mx-auto">
 				<h4 className="text-sm font-medium sm:text-sm text-center mb-8 uppercase">
-					Teams I've worked with
+					Relied upon by a fresh generation of companies
 				</h4>
 				<div className="h-10">
 					{/* Clone inside creates seamless loop */}
