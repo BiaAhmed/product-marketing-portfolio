@@ -1,3 +1,7 @@
+---
+import Terminal from "@components/misc/terminal";
+---
+
 <section>
     <div class="pt-36">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -77,28 +81,23 @@
             </div>
   
             <!-- Code Snippet -->
-            <pre class="text-sm ml-4 font-mono text-green whitespace-pre-line text-left text-theme-sun-text dark:text-theme-moon-text bg-theme-sun-bgAccent dark:bg-theme-moon-bgAccent rounded-lg p-2 leading-relaxed">
+            <Terminal>
+              {`> launching rabia.exe...
+> loading growth modules...
+> boot sequence complete.
 
-                <code>
-                &gt; launching rabia.exe...
-                &gt; loading growth modules...
-                &gt; boot sequence complete.
-                
-                [ rabia ahmed ]
-                alias: "biaahmed"
-                base: working globally 
-                mission: make products impossible to ignore
-                experience: 7+ yrs   |   B2B SaaS & DevTools + Web3
-                promoted: Content Marketer → Head of Marketing in 4 months
-                projects:  Pullflow • Metis AI • Eterna • Alchemy • CashFlowApp
-                skills_loaded: HubSpot GA4 Mixpanel Figma Retool SQL Storytelling
-                next_objective: Find a founder or team chasing breakout traction
-                
-                
-                &gt; type "start" to chat over coffee ☕︎
-                </code>
-                
-            </pre>
+[ rabia ahmed ]
+alias: "biaahmed"
+base: working globally
+mission: make products impossible to ignore
+experience: 7+ yrs   |   B2B SaaS & DevTools + Web3
+promoted: Content Marketer → Head of Marketing in 4 months
+projects:  Pullflow • Metis AI • Eterna • Alchemy • CashFlowApp
+skills_loaded: HubSpot GA4 Mixpanel Figma Retool SQL Storytelling
+next_objective: Find a founder or team chasing breakout traction
+
+> type "start" to chat over coffee ☕︎`}
+            </Terminal>
 
             <form id="startForm">
               <div class="mx-4 mb-4">
