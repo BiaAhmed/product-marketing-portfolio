@@ -1,0 +1,9 @@
+---
+import { PortableText as PortableTextRenderer } from "astro-portabletext";
+
+const { value } = Astro.props;
+---
+
+<div class="w-full max-w-3xl prose prose-lg my-3 px-2 sm:px-0 prose-p:font-regular dark:prose-invert prose-a:underline prose-a:bg-orange-50 prose-a:decoration-orange-500 dark:prose-a:bg-orange-950 dark:prose-a:decoration-orange-400 dark:prose-a:underline prose-h1:font-regular prose-h2:font-regular prose-h3:font-regular prose-h4:font-regular prose-h5:font-regular prose-h6:font-regular prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight prose-h4:tracking-tight prose-h5:tracking-tight prose-h6:tracking-tight prose-ul:font-regular prose-ol:font-regular prose-li:font-regular prose-ul:space-y-3 prose-ol:space-y-3 prose-li:space-y-3">
+  <PortableTextRenderer value={value} />
+</div>

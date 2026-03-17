@@ -1,26 +1,34 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import { ScrollProgress } from "@components/misc";
+import PortableText from "@components/PortableText.astro";
 import WritingLayout from "@layouts/writing-layout.astro";
 import { getReadingTime } from "@utils/index";
+import { getClient } from "../../sanity/client";
+import { blogPostBySlugQuery, type SanityBlogPost } from "../../sanity/queries";
+
 const posts = await getCollection("writing");
-type Props = CollectionEntry<"writing">;
+const rawSlug = Astro.params.slug;
+const slug = Array.isArray(rawSlug) ? rawSlug.join("/") : rawSlug;
 
-const rawSlug = Astro.params.slug; // string | string[]
-const slug = Array.isArray(rawSlug)
-	? rawSlug.join("/") // "nested/path"
-	: rawSlug; // already a single string
+const sanityClient = getClient();
+const sanityPost = slug ? await sanityClient.fetch<SanityBlogPost | null>(blogPostBySlugQuery, { slug }).catch(() => null) : null;
+const legacyPost = posts.find((page) => page.slug === slug);
 
-const post = posts.find((page) => page.slug === slug);
+if (!sanityPost && !legacyPost) return Astro.redirect("/404");
 
-if (!post) return Astro.redirect("/404");
+const title = sanityPost?.title ?? legacyPost?.data.title;
+const description = sanityPost?.excerpt ?? legacyPost?.data.description;
+const pubDate = sanityPost?.publishedAt ? new Date(sanityPost.publishedAt) : legacyPost?.data.pubDate;
+const heroImage = legacyPost?.data.heroImage;
 
-const { Content } = await post.render();
-
-const readingTime = getReadingTime(post.body);
+const readingSource = sanityPost?.body ? JSON.stringify(sanityPost.body) : legacyPost?.body ?? "";
+const readingTime = getReadingTime(readingSource);
+const renderedLegacy = legacyPost ? await legacyPost.render() : null;
+const LegacyContent = renderedLegacy?.Content;
 ---
 
-<WritingLayout {...post.data} readingTime={readingTime}>
-		<Content />
+<WritingLayout title={title} description={description} pubDate={pubDate} heroImage={heroImage} readingTime={readingTime}>
+  {sanityPost?.body ? <PortableText value={sanityPost.body} /> : LegacyContent && <LegacyContent />}
 	<ScrollProgress />
 </WritingLayout>

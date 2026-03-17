@@ -4,12 +4,35 @@ import { ResourcesItem } from "@components/cards";
 import { BaseHead } from "@components/seo";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
 import Layout from "@layouts/layout.astro";
+import { getClient } from "../../sanity/client";
+import { allResourcesQuery, type SanityResource } from "../../sanity/queries";
 
 const PAGE_SIZE = 6;
+const sanityClient = getClient();
+const sanityResources = await sanityClient.fetch<SanityResource[]>(allResourcesQuery).catch(() => []);
+const legacyResources = await getCollection("resource");
 
-const allResources = (await getCollection("resource")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const normalizedSanityResources = sanityResources.map((resource) => ({
+  slug: resource.slug?.current,
+  data: {
+    category: resource.resourceType,
+    description: resource.description,
+    pubDate: resource.publishedAt ? new Date(resource.publishedAt) : new Date(),
+  },
+}));
+
+const normalizedLegacyResources = legacyResources.map((resource) => ({
+  slug: resource.slug,
+  data: {
+    category: resource.data.category,
+    description: resource.data.description,
+    pubDate: resource.data.pubDate,
+  },
+}));
+
+const merged = [...normalizedSanityResources, ...normalizedLegacyResources].filter((resource) => resource.slug);
+const deduped = Array.from(new Map(merged.map((resource) => [resource.slug, resource])).values());
+const allResources = deduped.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
 const start = (currentPage - 1) * PAGE_SIZE;
@@ -47,7 +70,6 @@ const totalPages = Math.ceil(allResources.length / PAGE_SIZE);
         }
       </div>
 
-      <!-- Pagination -->
       <nav class="mt-16 flex justify-center gap-4">
         {
           currentPage > 1 && (

@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import node from "@astrojs/node";
+import sanity from "@sanity/astro";
 
 export default defineConfig({
   site: "https://www.rabiaahmed.me",
@@ -18,5 +19,12 @@ export default defineConfig({
     }),
     tailwind(),
     react(),
+    sanity({
+      projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
+      dataset: import.meta.env.PUBLIC_SANITY_DATASET || "production",
+      useCdn: false,
+      apiVersion: "2025-03-18",
+      studioBasePath: "/studio",
+    }),
   ],
 });

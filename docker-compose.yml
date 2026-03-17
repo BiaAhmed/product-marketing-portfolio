@@ -8,6 +8,8 @@ services:
     environment:
       - PORT=4321
       - HOST=0.0.0.0
+      - PUBLIC_SANITY_PROJECT_ID=${PUBLIC_SANITY_PROJECT_ID}
+      - PUBLIC_SANITY_DATASET=${PUBLIC_SANITY_DATASET:-production}
     ports:
       - "4321:4321"
     restart: unless-stopped
