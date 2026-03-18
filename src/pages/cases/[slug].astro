@@ -1,28 +1,71 @@
 ---
 import { getCollection } from "astro:content";
+import PortableText from "@components/PortableText.astro";
 import { BaseHead } from "@components/seo";
 import Layout from "@layouts/layout.astro";
 import { painPointCategories } from "@components/socialproofs/cases-content";
+import { getClient } from "../../sanity/client";
+import { caseStudyBySlugQuery, type SanityCaseStudy } from "../../sanity/queries";
+import { urlFor } from "../../sanity/image";
 
 const posts = await getCollection("cases");
-
 const slug = Astro.params.slug;
-const post = posts.find((page) => page.slug === slug);
+const sanityClient = getClient();
+const sanityPost = slug ? await sanityClient.fetch<SanityCaseStudy | null>(caseStudyBySlugQuery, { slug }).catch(() => null) : null;
+const legacyPost = posts.find((page) => page.slug === slug);
 
-if (!post) return Astro.redirect("/404");
+if (!sanityPost && !legacyPost) return Astro.redirect("/404");
 
-const { Content } = await post.render();
+const mapCategory = (category?: string) => {
+  if (category === "User Adoption") return "adoption";
+  if (category === "Discoverability") return "discoverability";
+  if (category === "Developer Experience") return "documentation";
+  if (category === "Conversion") return "conversion";
+  return undefined;
+};
+
+const post = sanityPost
+  ? {
+      data: {
+        title: sanityPost.title,
+        description: sanityPost.excerpt ?? "",
+        heroImage: sanityPost.coverImage ? urlFor(sanityPost.coverImage).width(1200).url() : undefined,
+        company: sanityPost.company,
+        logo: sanityPost.companyLogo,
+        logoAlt: sanityPost.company ?? sanityPost.title,
+        painPointCategory: mapCategory(sanityPost.category),
+        tags: sanityPost.tags ?? [],
+        snapshot: sanityPost.metrics?.map((metric) => ({ label: metric.label, value: metric.value })) ?? [],
+        challenge: sanityPost.challenge,
+        approach: sanityPost.approach,
+        action: sanityPost.action,
+        results: sanityPost.results,
+        learning: sanityPost.keyLearning,
+        testimonial: sanityPost.testimonial,
+        howDetails: sanityPost.howIDidIt ?? [],
+        ctaLink: null,
+      },
+      body: sanityPost.body,
+    }
+  : {
+      data: legacyPost?.data,
+      body: null,
+    };
 
 const painPointLabel = painPointCategories.find(
-        (category) => category.id === post.data.painPointCategory,
+  (category) => category.id === post.data?.painPointCategory,
 )?.label;
+
+const renderedLegacy = legacyPost ? await legacyPost.render() : null;
+const LegacyContent = renderedLegacy?.Content;
+const logoSrc = typeof post.data?.logo === "string" ? post.data.logo : urlFor(post.data?.logo).width(240).url();
 ---
 
 <head>
     <BaseHead
-        title={`${post.data.title} – Case Study`}
-        description={post.data.description}
-        image={post.data.heroImage ?? "/images/ogimage.png"}
+        title={`${post.data?.title} – Case Study`}
+        description={post.data?.description}
+        image={post.data?.heroImage ?? "/images/ogimage.png"}
     />
 </head>
 
@@ -53,17 +96,17 @@ const painPointLabel = painPointCategories.find(
 
             <header class="space-y-4 text-left">
                 <div class="flex items-center gap-4">
-                    <img src={post.data.logo} alt={post.data.logoAlt} class="w-16 h-16 object-contain" loading="lazy" decoding="async" />
+                    <img src={logoSrc} alt={post.data?.logoAlt} class="w-16 h-16 object-contain" loading="lazy" decoding="async" />
                     <div>
-                        <p class="text-sm uppercase tracking-wide text-theme-sun-secondary dark:text-theme-moon-secondary">{post.data.company}</p>
+                        <p class="text-sm uppercase tracking-wide text-theme-sun-secondary dark:text-theme-moon-secondary">{post.data?.company}</p>
                         <h1 class="text-4xl sm:text-5xl font-semibold text-theme-sun-text dark:text-theme-moon-text">
-                            {post.data.title}
+                            {post.data?.title}
                         </h1>
                     </div>
                 </div>
-                <p class="text-lg text-theme-sun-textMuted dark:text-theme-moon-textMuted max-w-3xl">{post.data.description}</p>
+                <p class="text-lg text-theme-sun-textMuted dark:text-theme-moon-textMuted max-w-3xl">{post.data?.description}</p>
                 <div class="flex flex-wrap gap-2">
-                    {post.data.tags.map((tag) => (
+                    {post.data?.tags?.map((tag) => (
                         <span class="bg-theme-sun-bgAccent/50 dark:bg-theme-moon-bg/70 px-3 py-1 rounded-full text-xs text-theme-sun-secondary dark:text-theme-moon-secondary font-medium">
                             {tag}
                         </span>
@@ -72,7 +115,7 @@ const painPointLabel = painPointCategories.find(
             </header>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {post.data.snapshot.map(({ label, value }) => (
+                {post.data?.snapshot?.map(({ label, value }) => (
                     <div class="rounded-xl border border-theme-sun-border/20 dark:border-theme-moon-border/20 bg-white dark:bg-theme-moon-bgAccent px-4 py-3 text-center">
                         <div class="text-xl font-bold text-theme-sun-accent dark:text-theme-moon-accent">{value}</div>
                         <div class="text-[11px] uppercase tracking-[0.08em] text-theme-sun-textMuted dark:text-theme-moon-textMuted mt-1">{label}</div>
@@ -86,15 +129,15 @@ const painPointLabel = painPointCategories.find(
                     <div class="space-y-3">
                         <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
                             <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Challenge</h3>
-                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.challenge}</p>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data?.challenge}</p>
                         </div>
                         <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
                             <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Approach</h3>
-                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.approach}</p>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data?.approach}</p>
                         </div>
                         <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
                             <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Action</h3>
-                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.action}</p>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data?.action}</p>
                         </div>
                     </div>
                 </div>
@@ -104,23 +147,25 @@ const painPointLabel = painPointCategories.find(
                     <div class="space-y-3">
                         <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
                             <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Results</h3>
-                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.results}</p>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data?.results}</p>
                         </div>
                         <div class="rounded-xl bg-white dark:bg-theme-moon-bgAccent border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
                             <h3 class="text-sm font-semibold text-theme-sun-secondary dark:text-theme-moon-secondary mb-1">Key learning</h3>
-                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.learning}</p>
+                            <p class="text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data?.learning}</p>
                         </div>
-                        <div class="rounded-xl bg-theme-sun-bgAccent/40 dark:bg-theme-moon-bg/40 border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
-                            <div class="flex gap-3">
-                                <div class="text-theme-sun-accent dark:text-theme-moon-accent text-3xl leading-none">"</div>
-                                <div>
-                                    <p class="text-sm italic text-theme-sun-text dark:text-theme-moon-text mb-2">{post.data.testimonial.quote}</p>
-                                    <div class="text-xs font-medium text-theme-sun-secondary dark:text-theme-moon-secondary">
-                                        {post.data.testimonial.author}, <span class="text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.testimonial.role}</span>
+                        {post.data?.testimonial && (
+                            <div class="rounded-xl bg-theme-sun-bgAccent/40 dark:bg-theme-moon-bg/40 border border-theme-sun-border/10 dark:border-theme-moon-border/10 p-4">
+                                <div class="flex gap-3">
+                                    <div class="text-theme-sun-accent dark:text-theme-moon-accent text-3xl leading-none">"</div>
+                                    <div>
+                                        <p class="text-sm italic text-theme-sun-text dark:text-theme-moon-text mb-2">{post.data.testimonial.quote}</p>
+                                        <div class="text-xs font-medium text-theme-sun-secondary dark:text-theme-moon-secondary">
+                                            {post.data.testimonial.author}, <span class="text-theme-sun-textMuted dark:text-theme-moon-textMuted">{post.data.testimonial.role}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -128,17 +173,17 @@ const painPointLabel = painPointCategories.find(
             <div class="rounded-2xl border border-theme-sun-border/10 dark:border-theme-moon-border/10 bg-white dark:bg-theme-moon-bgAccent p-6">
                 <h2 class="text-lg font-semibold text-theme-sun-text dark:text-theme-moon-text mb-3">How I did it</h2>
                 <ul class="list-disc pl-5 space-y-2 text-sm text-theme-sun-textMuted dark:text-theme-moon-textMuted">
-                    {post.data.howDetails.map((detail) => (
+                    {post.data?.howDetails?.map((detail) => (
                         <li>{detail}</li>
                     ))}
                 </ul>
             </div>
 
             <article class="prose prose-neutral dark:prose-invert max-w-none bg-white/60 dark:bg-theme-moon-bg/60 p-6 rounded-2xl border border-theme-sun-border/10 dark:border-theme-moon-border/10">
-                <Content />
+                {post.body ? <PortableText value={post.body} /> : LegacyContent && <LegacyContent />}
             </article>
 
-            {post.data.ctaLink && (
+            {post.data?.ctaLink && (
                 <div class="flex justify-start">
                     <a
                         href={post.data.ctaLink}

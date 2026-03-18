@@ -4,11 +4,35 @@ import FormattedDate from "@components/misc/formatted-date.astro";
 import { BaseHead } from "@components/seo";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
 import Layout from "@layouts/layout.astro";
+import { getClient } from "../../sanity/client";
+import { allBlogPostsQuery, type SanityBlogPost } from "../../sanity/queries";
 
 const PAGE_SIZE = 5;
-const allWritings = (await getCollection("writing")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const sanityClient = getClient();
+const sanityPosts = await sanityClient.fetch<SanityBlogPost[]>(allBlogPostsQuery).catch(() => []);
+const legacyPosts = await getCollection("writing");
+
+const normalizedSanityPosts = sanityPosts.map((post) => ({
+  slug: post.slug?.current,
+  data: {
+    title: post.title,
+    description: post.excerpt,
+    pubDate: post.publishedAt ? new Date(post.publishedAt) : new Date(),
+  },
+}));
+
+const normalizedLegacyPosts = legacyPosts.map((post) => ({
+  slug: post.slug,
+  data: {
+    title: post.data.title,
+    description: post.data.description,
+    pubDate: post.data.pubDate,
+  },
+}));
+
+const merged = [...normalizedSanityPosts, ...normalizedLegacyPosts].filter((post) => post.slug);
+const deduped = Array.from(new Map(merged.map((post) => [post.slug, post])).values());
+const allWritings = deduped.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
 const start = (currentPage - 1) * PAGE_SIZE;
@@ -52,7 +76,6 @@ const totalPages = Math.ceil(allWritings.length / PAGE_SIZE);
         }
       </div>
 
-      <!-- Pagination -->
       <nav class="mt-12 flex justify-center gap-4">
         {
           currentPage > 1 && (

@@ -2,9 +2,31 @@
 import type { CollectionEntry } from "astro:content";
 import Logos from "@components/socialproofs/customerLogos";
 import { painPointCategories } from "@components/socialproofs/cases-content";
+import { urlFor } from "../../sanity/image";
+
+interface CaseStudyData {
+        logo: string | unknown;
+        logoAlt: string;
+        painPointCategory: string;
+        title: string;
+        tags: string[];
+        challenge: string;
+        approach: string;
+        action: string;
+        results: string;
+        learning: string;
+        snapshot: { label: string; value: string }[];
+        testimonial: { quote: string; author: string; role: string };
+        howDetails: string[];
+}
+
+interface CaseStudy {
+        slug: string;
+        data: CaseStudyData;
+}
 
 interface Props {
-        caseStudies: CollectionEntry<"cases">[];
+        caseStudies: CaseStudy[] | CollectionEntry<"cases">[];
         seeMoreHref?: string;
         seeMoreLabel?: string;
 }
@@ -13,6 +35,11 @@ const props = Astro.props as Partial<Props> | undefined;
 const caseStudies = props?.caseStudies ?? [];
 const seeMoreHref = props?.seeMoreHref;
 const seeMoreLabel = props?.seeMoreLabel ?? "See more proof of work";
+
+const getLogoSrc = (logo: string | unknown) => {
+        if (typeof logo === "string") return logo;
+        return urlFor(logo).width(240).url();
+};
 ---
 
 <section id="cases" class=" dark:from-theme-moon-bg dark:to-theme-moon-bgAccent py-24">
@@ -52,7 +79,7 @@ const seeMoreLabel = props?.seeMoreLabel ?? "See more proof of work";
             <!-- Card header with company info -->
             <div class="relative pt-6 pl-2 pr-6 border-b border-theme-sun-border/10 dark:border-theme-moon-border/10 flex items-center justify-between">
               <div class="flex items-center gap-4">
-                <img src={study.data.logo} alt={study.data.logoAlt} loading="lazy" decoding="async" class="w-17 theme-logo" />
+                <img src={getLogoSrc(study.data.logo)} alt={study.data.logoAlt} loading="lazy" decoding="async" class="w-17 theme-logo" />
               </div>
               
               <!-- Pain point category badge -->

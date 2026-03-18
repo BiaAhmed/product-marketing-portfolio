@@ -3,10 +3,58 @@ import { getCollection } from "astro:content";
 import { BaseHead } from "@components/seo";
 import Layout from "@layouts/layout.astro";
 import CaseStudies from "@components/socialproofs/cases.astro";
+import { getClient } from "../../sanity/client";
+import { allCaseStudiesQuery, type SanityCaseStudy } from "../../sanity/queries";
 
-const caseStudies = (await getCollection("cases")).sort(
-        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const sanityClient = getClient();
+const sanityCases = await sanityClient.fetch<SanityCaseStudy[]>(allCaseStudiesQuery).catch(() => []);
+const legacyCases = await getCollection("cases");
+
+const mapCategory = (category?: string) => {
+  if (category === "User Adoption") return "adoption";
+  if (category === "Discoverability") return "discoverability";
+  if (category === "Developer Experience") return "documentation";
+  if (category === "Conversion") return "conversion";
+  return "adoption";
+};
+
+const normalizedSanityCases = sanityCases.map((study) => ({
+  slug: study.slug?.current,
+  data: {
+    logo: study.companyLogo,
+    logoAlt: study.company || study.title,
+    painPointCategory: mapCategory(study.category),
+    title: study.title,
+    tags: study.tags ?? [],
+    challenge: study.challenge,
+    approach: study.approach,
+    action: study.action,
+    results: study.results,
+    pubDate: new Date(),
+    order: study.order ?? Number.MAX_SAFE_INTEGER,
+  },
+}));
+
+const normalizedLegacyCases = legacyCases.map((study) => ({
+  slug: study.slug,
+  data: {
+    logo: study.data.logo,
+    logoAlt: study.data.logoAlt,
+    painPointCategory: study.data.painPointCategory,
+    title: study.data.title,
+    tags: study.data.tags,
+    challenge: study.data.challenge,
+    approach: study.data.approach,
+    action: study.data.action,
+    results: study.data.results,
+    pubDate: study.data.pubDate,
+    order: Number.MAX_SAFE_INTEGER,
+  },
+}));
+
+const merged = [...normalizedSanityCases, ...normalizedLegacyCases].filter((study) => study.slug);
+const deduped = Array.from(new Map(merged.map((study) => [study.slug, study])).values());
+const caseStudies = deduped.sort((a, b) => a.data.order - b.data.order || b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <head>
@@ -19,7 +67,6 @@ const caseStudies = (await getCollection("cases")).sort(
 
 <Layout>
     <section class="relative min-h-screen pt-32 sm:pt-40 pb-24 overflow-hidden">
-        <!-- radial flare -->
         <div
             aria-hidden
             class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[1000px] h-[800px]
